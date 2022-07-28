@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="ScoreObserver.cpp">
+      <Filter>Patterns</Filter>
+    </ClCompile>
+    <ClCompile Include="LiveObserver.cpp">
+      <Filter>Patterns</Filter>
+    </ClCompile>
+    <ClCompile Include="Lives.cpp">
+      <Filter>Prefabs</Filter>
+    </ClCompile>
+    <ClCompile Include="Sandbox.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Score.cpp">
+      <Filter>Prefabs</Filter>
+    </ClCompile>
+    <ClCompile Include="MainMenu.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="LivesDisplay.cpp">
+      <Filter>Prefabs\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="ScoreDisplay.cpp">
+      <Filter>Prefabs\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="FPSObject.cpp">
+      <Filter>Prefabs\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Timer.cpp">
+      <Filter>Patterns</Filter>
+    </ClCompile>
+    <ClCompile Include="TimerCallback.cpp">
+      <Filter>Patterns</Filter>
+    </ClCompile>
+    <ClCompile Include="JsonLevelLoader.cpp" />
+    <ClCompile Include="SingleplayerLevel.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="PrefabBuilder.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ScoreObserver.h">
+      <Filter>Patterns</Filter>
+    </ClInclude>
+    <ClInclude Include="LiveObserver.h">
+      <Filter>Patterns</Filter>
+    </ClInclude>
+    <ClInclude Include="Lives.h">
+      <Filter>Prefabs</Filter>
+    </ClInclude>
+    <ClInclude Include="Score.h">
+      <Filter>Prefabs</Filter>
+    </ClInclude>
+    <ClInclude Include="MainMenu.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="BurgerTimePCH.h" />
+    <ClInclude Include="LivesDisplay.h">
+      <Filter>Prefabs\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="ScoreDisplay.h">
+      <Filter>Prefabs\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="FPSObject.h">
+      <Filter>Prefabs\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Timer.h">
+      <Filter>Patterns</Filter>
+    </ClInclude>
+    <ClInclude Include="TimerCallback.h">
+      <Filter>Patterns</Filter>
+    </ClInclude>
+    <ClInclude Include="JsonLevelLoader.h" />
+    <ClInclude Include="SingleplayerLevel.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="PrefabBuilder.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="imgui.ini" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Scenes">
+      <UniqueIdentifier>{44b24e79-3810-4235-9b80-8435692a2690}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Prefabs">
+      <UniqueIdentifier>{d7903ce3-4d1f-48b4-8820-d17835e88909}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Patterns">
+      <UniqueIdentifier>{515409b5-8763-4088-9483-c932d15cd541}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Prefabs\UI">
+      <UniqueIdentifier>{cc3a873e-6e45-43ae-b244-d58af5bbd4b7}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
