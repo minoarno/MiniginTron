@@ -56,7 +56,7 @@
     <ClInclude Include="MainMenu.h">
       <Filter>Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="BurgerTimePCH.h" />
+    <ClInclude Include="TronPCH.h" />
     <ClInclude Include="LivesDisplay.h">
       <Filter>Prefabs\UI</Filter>
     </ClInclude>
@@ -77,6 +77,7 @@
       <Filter>Scenes</Filter>
     </ClInclude>
     <ClInclude Include="PrefabBuilder.h" />
+    <ClInclude Include="TronCommands.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="imgui.ini" />

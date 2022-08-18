@@ -39,6 +39,9 @@ public:
 
 	int GetImagePartWidth()const { return m_Width / m_AmountOfCols; };
 	int GetImagePartHeight()const { return m_Height / m_AmountOfRows; };
+
+
+	void UpdateTexture();
 private:
 	dae::Texture2D* m_pTexture;
 	Rect m_DestinationRect{};

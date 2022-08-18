@@ -37,6 +37,7 @@ void TextureComponent::SetTexture(const std::string& filename)
 {
 	m_pTexture = dae::ResourceManager::GetInstance().LoadTexture(filename);
 	CalculateDimension();
+	CalculateSourceRect(0);
 }
 
 void TextureComponent::SetDestinationRectDimensions(const Vector2& dst)
@@ -75,6 +76,11 @@ void TextureComponent::CalculateSourceRect(int col, int row)
 	int heightPart{ m_Height / m_AmountOfRows };
 
 	m_SourceRect = Rect{ col * widthPart,row * heightPart,widthPart,heightPart };
+}
+
+void TextureComponent::UpdateTexture()
+{
+	CalculateDimension();
 }
 
 void TextureComponent::CalculateDimension()

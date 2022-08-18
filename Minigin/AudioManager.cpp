@@ -70,7 +70,8 @@ Audio::MixerAudio::~MixerAudio()
 {
 	for (Mix_Chunk* e : m_pSoundEffects)
 	{
-		delete e;
+		Mix_FreeChunk(e);
+		//delete e;
 		e = nullptr;
 	}
 	m_pSoundEffects.clear();

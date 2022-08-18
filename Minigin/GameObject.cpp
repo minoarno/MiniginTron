@@ -230,9 +230,14 @@ void dae::GameObject::BaseRender() const
 
 void dae::GameObject::SetTexture(const std::string& filename, int amountOfCols, int amountOfRows)
 {
-	if (m_pTextureComponent == nullptr) m_pTextureComponent = AddComponent(new TextureComponent{ filename, amountOfCols, amountOfRows });
+	if (m_pTextureComponent == nullptr)
+	{
+		m_pTextureComponent = AddComponent(new TextureComponent{ filename, amountOfCols, amountOfRows });
+	}
 	else m_pTextureComponent->SetTexture(filename);
 	m_pTextureComponent->BaseInitialize();
+	//m_pTextureComponent->CalculateSourceRect(amountOfCols,amountOfRows);
+	//m_pTextureComponent->UpdateTexture();
 }
 
 void dae::GameObject::SetPosition(float x, float y, float z)

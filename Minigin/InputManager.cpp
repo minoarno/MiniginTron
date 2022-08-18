@@ -56,6 +56,7 @@ public:
 	void AddOnRelease(ControllerButton controllerButton, Command* command, DWORD playerID = 0);
 
 	void CleanUp();
+	~XInputManager() = default;
 private:
 	std::map<PlayerButton, InputStruct*> m_ControllerCommands;
 

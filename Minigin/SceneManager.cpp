@@ -1,6 +1,7 @@
 #include "MiniginPCH.h"
 #include "SceneManager.h"
 #include "Scene.h"
+#include "Log.h"
 
 void dae::SceneManager::FixedUpdate()
 {
@@ -45,12 +46,13 @@ void dae::SceneManager::LoadScene(int index)
 		else
 		{
 			// out of range
+			ME_CORE_WARN("The scene index is out of range");
 		}
 	}
 	else
 	{
 		// Same scene
-		
+		ME_CORE_WARN("The scene is the same as the current one");
 	}
 }
 
