@@ -3,7 +3,6 @@
 #include <vector>
 #include "GameObject.h"
 
-class BoxCollider;
 namespace dae
 {
 	class Scene
@@ -24,8 +23,6 @@ namespace dae
 		}
 		void RemoveObject(GameObject* pObject);
 
-		void AddCollider(BoxCollider* pBoxCollider);
-
 		virtual void Initialize() = 0;
 		
 		virtual void FixedUpdate() {};
@@ -34,21 +31,12 @@ namespace dae
 		virtual void Render() const {};
 
 		virtual void Unload() {};
-
-		std::vector<GameObject*> CollisionDetection(GameObject* pObject) const;
-		bool CollisionDetectionOnTag(GameObject* pObject, const std::string& tag) const;
-		bool CollisionDetectionOnTag(GameObject* pObject, const std::string& tag, BoxCollider*& pFirstTaggedBox) const;
-		bool CollisionDetectionOnTag(BoxCollider* pBox, const std::string& tag) const;
-		bool CollisionDetectionOnTag(BoxCollider* pBox, const std::string& tag, BoxCollider*& pFirstTaggedBox) const;
-		bool GroundDetectionOnTag(GameObject* pObject, const std::string& tag) const;
-		bool GroundDetectionOnTag(BoxCollider* pBox, const std::string& tag) const;
 	private: 
 		friend class SceneManager;
 
 		std::string m_Name;
 		std::vector<GameObject*> m_pObjects{};
 		std::vector<GameObject*> m_pToBeDeletedObjects{};
-		std::vector<BoxCollider*> m_pColliders{};
 
 		bool m_IsInitialized{ false };
 

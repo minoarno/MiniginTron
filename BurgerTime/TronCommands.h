@@ -26,10 +26,6 @@ public:
 		float speed = m_Speed * float(Time::GetInstance().GetElapsedSeconds());
 		auto trans = m_pGameObject->GetComponent<dae::Transform>();
 		trans->Move(float(m_Direction.x) * speed, float(m_Direction.y) * speed, 0);
-		if (!m_pGameObject->GetScene()->GroundDetectionOnTag(m_pGameObject, "Level"))
-		{
-			undo();
-		}
 	}
 
 	virtual void undo() const

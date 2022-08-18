@@ -7,7 +7,6 @@
 #include "TextureComponent.h"
 #include "Scene.h"
 #include "SceneManager.h"
-#include "BoxCollider.h"
 
 dae::GameObject::GameObject()
 	: m_pTextureComponent{ nullptr }
@@ -118,12 +117,6 @@ void dae::GameObject::AddComponent_(BaseComponent* newComponent)
 	m_pBaseComponents.emplace_back(newComponent);
 	newComponent->SetGameObject(this);
 	newComponent->BaseInitialize();
-
-	auto pBox = dynamic_cast<BoxCollider*>(newComponent);
-	if (pBox != nullptr)
-	{
-		m_pScene->AddCollider(pBox);
-	}
 }
 
 void dae::GameObject::BaseInitialize()

@@ -98,7 +98,6 @@
       <Filter>Helper</Filter>
     </ClInclude>
     <ClInclude Include="HelperStructs.h" />
-    <ClInclude Include="BoxCollider.h" />
     <ClInclude Include="Log.h" />
     <ClInclude Include="Pathfinding.h">
       <Filter>Pathfinding</Filter>
@@ -196,7 +195,6 @@
       <Filter>Helper</Filter>
     </ClCompile>
     <ClCompile Include="HelperStructs.cpp" />
-    <ClCompile Include="BoxCollider.cpp" />
     <ClCompile Include="Log.cpp" />
     <ClCompile Include="Pathfinding.cpp">
       <Filter>Pathfinding</Filter>
