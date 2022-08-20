@@ -88,6 +88,19 @@ dae::GameObject* dae::GameObject::GetChild(int index)
 	return m_pChildren[index];
 }
 
+void dae::GameObject::Collision(b2Fixture* pThisFixture, b2Fixture* pOtherFixture, b2Contact* pContact, CollisionType contactType)
+{
+	for (size_t i = 0; i < m_CollisionCallbacks.size(); i++)
+	{
+		m_CollisionCallbacks[i](pThisFixture, pOtherFixture, pContact, contactType);
+	}
+}
+
+void dae::GameObject::AddCollisionCallback(const CollisionCallback& callback)
+{
+	m_CollisionCallbacks.emplace_back(callback);
+}
+
 void dae::GameObject::AddChild_(GameObject* newChild)
 {
 	if (newChild->GetParent() != nullptr)

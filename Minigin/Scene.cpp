@@ -4,6 +4,7 @@
 
 #include "HelperFunctions.h"
 #include "Box2D/Dynamics/b2World.h"
+#include "ContactListener.h"
 
 using namespace dae;
 
@@ -15,7 +16,8 @@ Scene::Scene(const std::string& name)
 	, m_pWorld{ new b2World{ {0,0}} }
 {
 	m_pWorld->SetAllowSleeping(false);
-
+	m_pContactListener = new ContactListener{};
+	m_pWorld->SetContactListener(m_pContactListener);
 }
 
 Scene::~Scene()

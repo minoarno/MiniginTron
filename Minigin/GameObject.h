@@ -5,9 +5,19 @@
 #include <string>
 #include <functional>
 #include "HelperStructs.h"
-
+#include "Box2D.h"
 class BaseComponent;
 class TextureComponent;
+
+enum class CollisionType
+{
+	BeginContact,
+	EndContact,
+	PreSolve,
+	PostSolve
+};
+
+typedef std::function<void(b2Fixture*, b2Fixture*, b2Contact*, CollisionType)> CollisionCallback;
 namespace dae
 {
 	class Scene;
@@ -60,6 +70,8 @@ namespace dae
 		void SetActive(bool value) { m_IsActive = value; }
 		bool GetActive()const { return m_IsActive; }
 
+		void Collision(b2Fixture* pThisFixture, b2Fixture* pOtherFixture, b2Contact* pContact, CollisionType contactType);
+		void AddCollisionCallback(const CollisionCallback& callback);
 	private:
 		dae::Scene* m_pScene;
 		std::string m_Tag;
@@ -81,6 +93,8 @@ namespace dae
 		void BaseUpdate();
 		void BaseLateUpdate();
 		void BaseRender()const;
+
+		std::vector<CollisionCallback> m_CollisionCallbacks;
 	};
 
 	template<typename T>
