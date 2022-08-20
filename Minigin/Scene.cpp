@@ -3,6 +3,7 @@
 #include "GameObject.h"
 
 #include "HelperFunctions.h"
+#include "Box2D/Dynamics/b2World.h"
 
 using namespace dae;
 
@@ -11,7 +12,10 @@ unsigned int Scene::m_IdCounter = 0;
 Scene::Scene(const std::string& name)
 	: m_Name{ name }
 	, m_pObjects{}
+	, m_pWorld{ new b2World{ {0,0}} }
 {
+	m_pWorld->SetAllowSleeping(false);
+
 }
 
 Scene::~Scene()
@@ -29,11 +33,19 @@ Scene::~Scene()
 		pObject = nullptr;
 	}
 	m_pToBeDeletedObjects.clear();
+
+	delete m_pWorld;
+	m_pWorld = nullptr;
 }
 
 void dae::Scene::RemoveObject(GameObject* pObject)
 {
 	m_pToBeDeletedObjects.emplace_back(pObject);
+}
+
+b2World* dae::Scene::GetWorld()
+{
+	return m_pWorld;
 }
 
 void dae::Scene::AddObject_(GameObject* pObject)
@@ -59,6 +71,8 @@ void dae::Scene::BaseInitialize()
 
 void dae::Scene::BaseFixedUpdate()
 {
+	m_pWorld->Step(1, 6, 2);
+
 	for (GameObject* pObject : m_pObjects)
 	{
 		pObject->BaseFixedUpdate();

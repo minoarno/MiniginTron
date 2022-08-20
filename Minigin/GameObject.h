@@ -43,8 +43,8 @@ namespace dae
 		void RemoveChild(GameObject* childObject);
 
 		void SetScene(Scene* pScene);
-		const Scene* GetScene()const;
-		GameObject* GetParent()const { return m_pParent; };
+		Scene* GetScene();
+		GameObject* GetParent() { return m_pParent; };
 		GameObject* GetChild(int index);
 		const std::vector<GameObject*>& GetChildren()const { return m_pChildren; };
 		

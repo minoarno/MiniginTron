@@ -25,7 +25,7 @@ protected:
 	virtual void LateUpdate() {};
 	virtual void Render() const {};
 
-	dae::GameObject* m_pGameObject = nullptr;
+	dae::GameObject* m_pGameObject{ nullptr };
 private:
 	virtual void BaseInitialize();
 	bool m_IsInitialized{ false };

@@ -8,39 +8,36 @@
 #include <fstream>
 
 #include "Pathfinding.h"
+#include "PrefabBuilder.h"
 
-void JsonLevelLoader::LoadSceneUsingJson(const std::string& jsonFile, Pathfinding* pPathfinding)
+void JsonLevelLoader::LoadSceneUsingJson(dae::GameObject* pLevelObject, const std::string& jsonFile, Pathfinding* pPathfinding)
 {
 	nlohmann::json j = LoadJsonFile(jsonFile);
 
 	pPathfinding = nullptr;
+	
+	dae::Scene* pScene = pLevelObject->GetScene();
 
-	//auto level = j.at("Level").get<std::vector<std::vector<int>>>();
-	//pLevel->SetBlockWidth(j.at("ColWidthBlock").get<int>());
-	//pLevel->SetSlabBlockHeight(j.at("SlabBlockHeight").get<int>());
-	//pLevel->SetLadderBlockHeight(j.at("LadderBlockHeight").get<int>());
-	//
-	//int y{};
-	//
-	//for (int r = 0; r < int(level.size()); r++)
-	//{
-	//	int height{ (r % 2 == 0) ? pLevel->GetSlabBlockHeight() : pLevel->GetLadderBlockHeight() };
-	//	for (int c = 0; c < int(level[r].size()); c++)
-	//	{
-	//		LevelBlock::LevelBlockID id = LevelBlock::LevelBlockID(level[r][c]);
-	//		if (id != LevelBlock::LevelBlockID::empty)
-	//		{
-	//			LevelBlock* pLevelBlock = pLevel->AddChild(new LevelBlock{ id , Vector2{pLevel->GetBlockWidth(), height} });
-	//			pLevelBlock->SetTag("Level");
-	//			pLevelBlock->SetPosition(float(c * pLevel->GetBlockWidth()), float(y));
-	//
-	//			pPathfinding->AddNode({ c * pLevel->GetBlockWidth(), y });
-	//		}
-	//	}
-	//	y += height;
-	//}
-	//
-	////Loading in the pathfinding
+	auto level = j.at("Level").get<std::vector<std::vector<int>>>();
+	int blockWidth = j.at("BlockWidth").get<int>();
+	int blockHeight = j.at("BlockHeight").get<int>();
+	
+	for (int r = 0; r < int(level.size()); r++)
+	{
+		for (int c = 0; c < int(level[r].size()); c++)
+		{
+			LevelBlockID id = LevelBlockID(level[r][c]);
+			if (id != LevelBlockID::empty)
+			{
+				/*dae::GameObject* pLevelBlock =*/ pLevelObject->AddChild(Prefab::CreateBlock({c * blockWidth, r * blockHeight}, {blockWidth,blockHeight}, pScene));
+				//pLevelBlock->SetTag("Level");
+	
+				//pPathfinding->AddNode({ c * blockWidth, y * blockHeight });
+			}
+		}
+	}
+	
+	//Loading in the pathfinding
 	//for (int r = 0; r < int(level.size()); r++)
 	//{
 	//	for (int c = 0; c < int(level[r].size()); c++)

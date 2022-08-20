@@ -73,7 +73,7 @@ void dae::GameObject::SetScene(Scene* pScene)
 	}
 }
 
-const dae::Scene* dae::GameObject::GetScene() const
+dae::Scene* dae::GameObject::GetScene()
 {
 	return m_pScene;
 }

@@ -3,6 +3,8 @@
 #include <vector>
 #include "GameObject.h"
 
+class ContactListener;
+class b2World;
 namespace dae
 {
 	class Scene
@@ -31,12 +33,17 @@ namespace dae
 		virtual void Render() const {};
 
 		virtual void Unload() {};
+
+		b2World* GetWorld();
 	private: 
 		friend class SceneManager;
 
 		std::string m_Name;
 		std::vector<GameObject*> m_pObjects{};
 		std::vector<GameObject*> m_pToBeDeletedObjects{};
+
+		b2World* m_pWorld{ nullptr };
+		ContactListener* m_pContactListener{ nullptr };
 
 		bool m_IsInitialized{ false };
 

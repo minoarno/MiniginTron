@@ -102,6 +102,19 @@
     <ClInclude Include="Pathfinding.h">
       <Filter>Pathfinding</Filter>
     </ClInclude>
+    <ClInclude Include="BoxCollider.h">
+      <Filter>Box2D</Filter>
+    </ClInclude>
+    <ClInclude Include="ColliderComponent.h">
+      <Filter>Box2D</Filter>
+    </ClInclude>
+    <ClInclude Include="RigidBody.h">
+      <Filter>Box2D</Filter>
+    </ClInclude>
+    <ClInclude Include="Box2D.h">
+      <Filter>Box2D</Filter>
+    </ClInclude>
+    <ClInclude Include="ContactListener.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="imgui\imgui.cpp">
@@ -199,6 +212,16 @@
     <ClCompile Include="Pathfinding.cpp">
       <Filter>Pathfinding</Filter>
     </ClCompile>
+    <ClCompile Include="BoxCollider.cpp">
+      <Filter>Box2D</Filter>
+    </ClCompile>
+    <ClCompile Include="ColliderComponent.cpp">
+      <Filter>Box2D</Filter>
+    </ClCompile>
+    <ClCompile Include="RigidBody.cpp">
+      <Filter>Box2D</Filter>
+    </ClCompile>
+    <ClCompile Include="ContactListener.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="imgui">
@@ -224,6 +247,9 @@
     </Filter>
     <Filter Include="Pathfinding">
       <UniqueIdentifier>{4f50576a-5215-49c0-aa80-4319f724b31c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Box2D">
+      <UniqueIdentifier>{4a705aa4-fe4d-4914-971a-df780d9f8e23}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
