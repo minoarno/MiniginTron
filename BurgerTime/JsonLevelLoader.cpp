@@ -29,7 +29,7 @@ void JsonLevelLoader::LoadSceneUsingJson(dae::GameObject* pLevelObject, const st
 			LevelBlockID id = LevelBlockID(level[r][c]);
 			if (id != LevelBlockID::empty)
 			{
-				/*dae::GameObject* pLevelBlock =*/ pLevelObject->AddChild(Prefab::CreateBlock({c * blockWidth, r * blockHeight}, {blockWidth,blockHeight}, pScene));
+				/*dae::GameObject* pLevelBlock =*/ pLevelObject->AddChild(Prefab::CreateBlock(Vector2{c * blockWidth, r * blockHeight}, Vector2{blockWidth,blockHeight}, pScene));
 				//pLevelBlock->SetTag("Level");
 	
 				//pPathfinding->AddNode({ c * blockWidth, y * blockHeight });

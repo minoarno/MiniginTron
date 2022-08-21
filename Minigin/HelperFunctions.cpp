@@ -31,10 +31,10 @@ void DrawRect(const Rect& rect)
 {
 	glBegin(GL_POLYGON);
 	{
-		glVertex2i(rect.x, rect.y);
-		glVertex2i(rect.x + rect.w, rect.y);
-		glVertex2i(rect.x + rect.w, rect.y + rect.h);
-		glVertex2i(rect.x, rect.y + rect.h);
+		glVertex2i(int(rect.x), int(rect.y));
+		glVertex2i(int(rect.x + rect.w), int(rect.y));
+		glVertex2i(int(rect.x + rect.w), int(rect.y + rect.h));
+		glVertex2i(int(rect.x), int(rect.y + rect.h));
 	}
 	glEnd();
 }

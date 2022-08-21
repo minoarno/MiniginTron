@@ -13,6 +13,8 @@ void ColliderComponent::Initialize()
 	m_FixtureDef.shape = &m_Shape;
 	m_FixtureDef.filter = m_Filter;
 	m_FixtureDef.density = 1.f;
+	m_FixtureDef.friction = 0.f;
+
 	RigidBody* pRigid = m_pGameObject->GetComponent<RigidBody>();
 	if (pRigid == nullptr)
 	{

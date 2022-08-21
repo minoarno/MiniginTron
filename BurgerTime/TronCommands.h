@@ -5,6 +5,7 @@
 #include "Scene.h"
 #include "EngineTime.h"
 #include "Transform.h"
+#include "RigidBody.h"
 
 class MoveCommand : public Command
 {
@@ -24,14 +25,8 @@ public:
 	virtual void Execute() const
 	{
 		float speed = m_Speed * float(Time::GetInstance().GetElapsedSeconds());
-		auto trans = m_pGameObject->GetComponent<dae::Transform>();
-		trans->Move(float(m_Direction.x) * speed, float(m_Direction.y) * speed, 0);
-	}
-
-	virtual void undo() const
-	{
-		float speed = m_Speed * float(Time::GetInstance().GetElapsedSeconds());
-		m_pGameObject->GetComponent<dae::Transform>()->Move(float(-m_Direction.x) * speed, float(-m_Direction.y) * speed, 0);
+		auto pRigid = m_pGameObject->GetComponent<RigidBody>();
+		pRigid->Move(m_Direction.x * speed, m_Direction.y * speed);
 	}
 
 	void SetDirection(const Vector2& dir) { m_Direction = dir; };

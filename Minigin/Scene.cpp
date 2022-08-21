@@ -6,6 +6,8 @@
 #include "Box2D/Dynamics/b2World.h"
 #include "ContactListener.h"
 
+#include "EngineTime.h"
+
 using namespace dae;
 
 unsigned int Scene::m_IdCounter = 0;
@@ -35,6 +37,9 @@ Scene::~Scene()
 		pObject = nullptr;
 	}
 	m_pToBeDeletedObjects.clear();
+
+	delete m_pContactListener;
+	m_pContactListener = nullptr;
 
 	delete m_pWorld;
 	m_pWorld = nullptr;
@@ -73,8 +78,6 @@ void dae::Scene::BaseInitialize()
 
 void dae::Scene::BaseFixedUpdate()
 {
-	m_pWorld->Step(1, 6, 2);
-
 	for (GameObject* pObject : m_pObjects)
 	{
 		pObject->BaseFixedUpdate();
@@ -85,6 +88,9 @@ void dae::Scene::BaseFixedUpdate()
 
 void dae::Scene::BaseUpdate()
 {
+	m_pWorld->Step(float(Time::GetInstance().GetElapsedSeconds()), 10, 8);
+
+
 	for (GameObject* pObject : m_pObjects)
 	{
 		pObject->BaseUpdate();

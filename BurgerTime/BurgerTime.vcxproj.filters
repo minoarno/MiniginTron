@@ -39,6 +39,10 @@
       <Filter>Scenes</Filter>
     </ClCompile>
     <ClCompile Include="PrefabBuilder.cpp" />
+    <ClCompile Include="BulletComponent.cpp">
+      <Filter>Prefabs</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyLogic.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ScoreObserver.h">
@@ -78,6 +82,10 @@
     </ClInclude>
     <ClInclude Include="PrefabBuilder.h" />
     <ClInclude Include="TronCommands.h" />
+    <ClInclude Include="BulletComponent.h">
+      <Filter>Prefabs</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyLogic.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="imgui.ini" />

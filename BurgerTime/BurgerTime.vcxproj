@@ -164,6 +164,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BulletComponent.cpp" />
+    <ClCompile Include="EnemyLogic.cpp" />
     <ClCompile Include="PrefabBuilder.cpp">
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">TronPCH.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">TronPCH.h</PrecompiledHeaderFile>
@@ -250,6 +252,8 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BulletComponent.h" />
+    <ClInclude Include="EnemyLogic.h" />
     <ClInclude Include="TronCommands.h" />
     <ClInclude Include="TronPCH.h" />
     <ClInclude Include="FPSObject.h" />

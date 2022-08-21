@@ -204,8 +204,8 @@ void dae::GameObject::BaseRender() const
 		Rect dstRect{ m_pTextureComponent->GetDestinationRect() };
 		Rect srcRect{ m_pTextureComponent->GetSourceRect() };
 
-		SDL_Rect dst = { int(pos.x), int(pos.y),dstRect.w,dstRect.h };
-		SDL_Rect src = { srcRect.x,srcRect.y,srcRect.w,srcRect.h };
+		SDL_Rect dst = { int(pos.x), int(pos.y), int(dstRect.w), int(dstRect.h) };
+		SDL_Rect src = { int(srcRect.x),int(srcRect.y),int(srcRect.w),int(srcRect.h) };
 		if (src.w != 0 && src.h != 0)
 		{
 			if (dst.w != 0 && dst.h != 0)

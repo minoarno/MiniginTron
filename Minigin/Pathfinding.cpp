@@ -99,10 +99,10 @@ int Pathfinding::GetNodeID(const Vector2& pos)
 int Pathfinding::ClosestNodeIndexToPosition(const Vector2& pos)
 {
     int closestDistanceIndex = -1;
-    int closestDistance = std::numeric_limits<int>::max();
+    float closestDistance = std::numeric_limits<float>::max();
     for (int i = 0; i < int(m_Nodes.size()); i++)
     {
-        int distance = pos.x - m_Nodes[i].position.x + pos.y - m_Nodes[i].position.y;
+        float distance = pos.x - m_Nodes[i].position.x + pos.y - m_Nodes[i].position.y;
 
         if (closestDistance > distance)
         {

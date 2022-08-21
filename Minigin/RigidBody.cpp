@@ -26,8 +26,15 @@ RigidBody::~RigidBody()
 
 b2Fixture* RigidBody::AddCollider(const b2FixtureDef& fixtureDef)
 {
-	//assert(m_pGameObject->GetScene()->GetWorld()->IsLocked());
 	return m_pBody->CreateFixture(&fixtureDef);
+}
+
+void RigidBody::Move(const float x, const float y)
+{
+	auto linearVelocity = m_pBody->GetLinearVelocity();
+	linearVelocity.x += x;
+	linearVelocity.y += y;
+	m_pBody->SetLinearVelocity(linearVelocity);
 }
 
 void RigidBody::Initialize()

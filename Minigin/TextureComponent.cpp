@@ -49,7 +49,7 @@ void TextureComponent::SetDestinationRectDimensions(const Vector2& dst)
 Rect TextureComponent::GetDestinationRect() const
 {
 	auto pos = m_pGameObject->GetComponent<dae::Transform>()->GetWorldPosition();
-	return Rect{int(pos.x),int(pos.y) ,m_DestinationRect.w,m_DestinationRect.h};
+	return Rect{ pos.x,pos.y ,m_DestinationRect.w,m_DestinationRect.h };
 }
 
 void TextureComponent::SetSourceRect(const Rect& src)
@@ -72,8 +72,8 @@ void TextureComponent::CalculateSourceRect(int imagePartIndex)
 
 void TextureComponent::CalculateSourceRect(int col, int row)
 {
-	int widthPart{ m_Width / m_AmountOfCols };
-	int heightPart{ m_Height / m_AmountOfRows };
+	float widthPart{ float(m_Width) / m_AmountOfCols };
+	float heightPart{ float(m_Height) / m_AmountOfRows };
 
 	m_SourceRect = Rect{ col * widthPart,row * heightPart,widthPart,heightPart };
 }
