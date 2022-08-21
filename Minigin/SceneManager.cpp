@@ -85,7 +85,7 @@ void dae::SceneManager::SetActiveScene(const int index)
 		if (index != m_CurrentIndex)
 		{
 			m_CurrentIndex = index;
-			InitializeActiveScene();
+			//InitializeActiveScene();
 		}
 	}
 	else

@@ -5,7 +5,7 @@
 #include "Scene.h"
 
 #include "RigidBody.h"
-
+#include <iostream>
 EnemyLogic::EnemyLogic(float speed, int score, int hp)
 	: m_Speed{ speed }
 	, m_Score{ score }
@@ -17,6 +17,8 @@ void EnemyLogic::Initialize()
 {
 	m_pGameObject->AddCollisionCallback([=](b2Fixture* , b2Fixture* pOtherFixture, b2Contact* , CollisionType contactType)
 		{
+			if (!m_pGameObject->GetActive())return;
+
 			dae::GameObject* other = static_cast<dae::GameObject*>(pOtherFixture->GetUserData());
 			if (contactType != CollisionType::BeginContact) return;
 			
@@ -25,6 +27,7 @@ void EnemyLogic::Initialize()
 				m_Hitpoints--;
 				if (m_Hitpoints <= 0)
 				{
+					m_pGameObject->SetActive(false);
 					m_pGameObject->GetScene()->RemoveObject(m_pGameObject);
 				}
 			}

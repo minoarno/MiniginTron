@@ -9,8 +9,9 @@
 #include "GameObject.h"
 
 Player::Player(int lives)
-    : m_pLives{ new Lives{lives} }
-    , m_pScore{ new Score{ } }
+    : m_AmountOfLives{ lives }
+    , m_pLives{ nullptr }
+    , m_pScore{ nullptr }
 {
 }
 
@@ -43,6 +44,9 @@ void Player::TurnRight()
 
 void Player::Initialize()
 {
+    m_pLives = m_pGameObject->AddComponent(new Lives{ m_AmountOfLives });
+    m_pScore = m_pGameObject->AddComponent(new Score{ });
+
     //m_pBarrel = m_pGameObject->AddChild(new dae::GameObject{});
 
 }

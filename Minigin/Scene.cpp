@@ -7,8 +7,11 @@
 #include "ContactListener.h"
 #include "b2DebugDraw.h"
 #include "EngineTime.h"
+#include "Button.h"
 
 #include "Log.h"
+
+#include "InputManager.h"
 
 using namespace dae;
 
@@ -87,6 +90,12 @@ void dae::Scene::AddObject_(GameObject* pObject)
 	m_pObjects.emplace_back(pObject);
 	pObject->SetScene(this);
 	pObject->BaseInitialize();
+
+	Button* pButton = pObject->GetComponent<Button>();
+	if (pButton != nullptr)
+	{
+		InputManager::GetInstance().AddUIButton(pButton);
+	}
 }
 
 void dae::Scene::BaseInitialize()
@@ -135,15 +144,15 @@ void dae::Scene::BaseLateUpdate()
 
 	LateUpdate();
 
-	for (int i = int(m_pToBeDeletedObjects.size() - 1); i > 0; i--)
+	for (size_t i = 0; i < m_pToBeDeletedObjects.size(); i++)
 	{
 		auto it = std::remove_if(m_pObjects.begin(), m_pObjects.end(), [=](dae::GameObject* pObject)
 			{
 				return pObject == m_pToBeDeletedObjects[i];
 			});
 
-		delete m_pToBeDeletedObjects.back();
-		m_pToBeDeletedObjects.back() = nullptr;
+		delete m_pToBeDeletedObjects[i];
+		m_pToBeDeletedObjects[i] = nullptr;
 
 		m_pObjects.erase(it);
 	}

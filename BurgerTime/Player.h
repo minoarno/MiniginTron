@@ -25,6 +25,7 @@ protected:
 private:
 	Score* m_pScore{ nullptr };
 	Lives* m_pLives{ nullptr };
+	int m_AmountOfLives{};
 
 	Vector2 m_DirectionBarrel{0,1};
 	float m_AngleInRadians{ 0.f };

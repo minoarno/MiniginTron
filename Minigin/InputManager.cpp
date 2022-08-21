@@ -4,6 +4,9 @@
 #include <Windows.h>
 #include "Command.h"
 #include <map>
+#include "Button.h"
+#include "Scene.h"
+#include "SceneManager.h"
 
 struct InputStruct
 {
@@ -55,8 +58,11 @@ public:
 	void AddOnHold(ControllerButton controllerButton, Command* command, DWORD playerID = 0);
 	void AddOnRelease(ControllerButton controllerButton, Command* command, DWORD playerID = 0);
 
+	void AddUIButton(Button* pButton);
+
 	void CleanUp();
 	~XInputManager() = default;
+	std::vector<Button*> m_pButtons{};
 private:
 	std::map<PlayerButton, InputStruct*> m_ControllerCommands;
 
@@ -97,7 +103,14 @@ bool InputManager::XInputManager::ProcessInput()
 			
 		}
 		if (e.type == SDL_MOUSEBUTTONDOWN) {
-			
+			auto activeScene = dae::SceneManager::GetInstance().GetActiveScene();
+			for (size_t i = 0; i < m_pButtons.size(); i++)
+			{
+				if (m_pButtons[i]->GetGameObject()->GetScene() == activeScene)
+				{
+					m_pButtons[i]->Click(Vector2{ e.motion.x,e.motion.y });
+				}
+			}
 		}
 	}
 
@@ -189,6 +202,11 @@ void InputManager::XInputManager::AddOnRelease(ControllerButton controllerButton
 	}
 }
 
+void InputManager::XInputManager::AddUIButton(Button* pButton)
+{
+	m_pButtons.emplace_back(pButton);
+}
+
 void InputManager::XInputManager::CleanUp()
 {
 	for (auto& p : m_ControllerCommands)
@@ -229,6 +247,11 @@ void InputManager::AddOnHold(ControllerButton controllerButton, Command* command
 void InputManager::AddOnRelease(ControllerButton controllerButton, Command* command, DWORD playerID)
 {
 	pimpl->AddOnRelease(controllerButton, command, playerID);
+}
+
+void InputManager::AddUIButton(Button* pButton)
+{
+	pimpl->AddUIButton(pButton);
 }
 
 void InputManager::CleanUp()

@@ -6,6 +6,7 @@
 class ContactListener;
 class b2World;
 class b2DebugDraw;
+class Button;
 namespace dae
 {
 	class Scene

@@ -26,6 +26,7 @@ namespace dae
 		
 		void Render();
 	private:
+
 		friend class Singleton<SceneManager>;
 		SceneManager() = default;
 		std::vector<Scene*> m_pScenes;

@@ -32,7 +32,7 @@ void BulletComponent::Initialize()
 					return;
 				}
 
-				//if (other->GetTag() == "Level")
+				if (other->GetTag() == "Level")
 				{
 					m_CurrentAmountOfBounces++;
 					if (m_CurrentAmountOfBounces >= m_MaxAmountOfBounces)

@@ -3,6 +3,7 @@
 #include "GameObject.h"
 #include "HelperStructs.h"
 #include "Scene.h"
+#include "SceneManager.h"
 #include "EngineTime.h"
 #include "Transform.h"
 #include "RigidBody.h"
@@ -101,4 +102,26 @@ public:
 protected:
 	dae::GameObject* m_pGameObject{};
 	bool m_TurnLeft;
+};
+
+class SceneSwapCommand : public Command
+{
+public:
+	SceneSwapCommand(int sceneIndex)
+		: m_SceneIndex{sceneIndex}
+	{
+	}
+	SceneSwapCommand(const SceneSwapCommand&) = delete;
+	SceneSwapCommand& operator=(const SceneSwapCommand&) = delete;
+	SceneSwapCommand(SceneSwapCommand&&) = delete;
+	SceneSwapCommand& operator=(SceneSwapCommand&&) = delete;
+	~SceneSwapCommand() = default;
+
+	virtual void Execute() const
+	{
+		dae::SceneManager::GetInstance().SetActiveScene(m_SceneIndex);
+	}
+
+protected:
+	int m_SceneIndex{};
 };

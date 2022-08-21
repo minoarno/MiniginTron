@@ -4,6 +4,7 @@
 #include "FPSObject.h"
 #include "PrefabBuilder.h"
 #include "InputManager.h"
+#include "TronCommands.h"
 
 MainMenu::MainMenu()
 	:dae::Scene{ "MainMenu" }
@@ -12,16 +13,7 @@ MainMenu::MainMenu()
 
 void MainMenu::Initialize()
 {
-
-	InputDesc inputDescPlayer1{};
-	AddObject(Prefab::CreatePlayer({20,50}, inputDescPlayer1, this));
-
-	AddObject(Prefab::CreateLevel("Level1.json", this));
-
-	AddObject(Prefab::CreateBlueTank({ 20,360 }, this));
-
-	//HUD
-	dae::GameObject* pFPSObject = AddObject(new dae::GameObject{});
-	pFPSObject->AddComponent(new FPSObject{});
-	pFPSObject->SetPosition(50, 50);
+	AddObject(Prefab::CreateButton({ 100, 60,200,60 }, new SceneSwapCommand{ 1 }, "UISingle.png"));
+	AddObject(Prefab::CreateButton({ 100,120,200,60 }, new SceneSwapCommand{ 2 }, "UICoop.png"));
+	AddObject(Prefab::CreateButton({ 100,180,200,60 }, new SceneSwapCommand{ 3 }, "UIVersus.png"));
 }

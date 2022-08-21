@@ -34,18 +34,21 @@ dae::GameObject* Prefab::CreatePlayer(const Vector2& pos, InputDesc inputDesc, d
     InputManager::GetInstance().AddOnRelease(inputDesc.moveRight,   new MoveCommand(pPlayer, 500, { 1, 0 }), inputDesc.playerIndex);
     InputManager::GetInstance().AddOnRelease(inputDesc.rotateLeft,  new RotateCommand(pPlayer, true), inputDesc.playerIndex);
     InputManager::GetInstance().AddOnRelease(inputDesc.rotateRight, new RotateCommand(pPlayer, false), inputDesc.playerIndex);
-    InputManager::GetInstance().AddOnRelease(inputDesc.shoot,       new ShootCommand(pPlayer, 20, ""), inputDesc.playerIndex);
+    InputManager::GetInstance().AddOnRelease(inputDesc.shoot,       new ShootCommand(pPlayer, 20, "PlayerBullet"), inputDesc.playerIndex);
 
     pPlayer->SetTag("Player");
     return pPlayer;
 }
 
-dae::GameObject* Prefab::CreateButton(const Vector2& pos, Command* pCommand)
+dae::GameObject* Prefab::CreateButton(const Rect& boundaries, Command* pCommand, const std::string& filepath)
 {
     dae::GameObject* pButton = new dae::GameObject{};
-    pButton->SetPosition(pos);
+    pButton->SetPosition({ boundaries .x,boundaries.y});
 
-    pButton->AddComponent<Button>(new Button(pCommand));
+    pButton->SetTexture(filepath);
+    pButton->GetComponent<TextureComponent>()->SetDestinationRectDimensions({ boundaries.w,boundaries.h });
+
+    pButton->AddComponent<Button>(new Button({boundaries.w,boundaries.h}, pCommand));
 
     return pButton;
 }

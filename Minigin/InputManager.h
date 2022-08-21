@@ -32,7 +32,7 @@ struct InputDesc
     ControllerButton rotateRight{ ControllerButton::ButtonB };
 };
 
-
+class Button;
 class Command;
 class XInputManager;
 class InputManager final : public dae::Singleton<InputManager>
@@ -47,6 +47,8 @@ public:
     void AddOnPressDown(ControllerButton controllerButton, Command* command, DWORD playerID = 0);
     void AddOnHold(ControllerButton controllerButton, Command* command, DWORD playerID = 0);
     void AddOnRelease(ControllerButton controllerButton, Command* command, DWORD playerID = 0);
+
+    void AddUIButton(Button* pButton);
 
     void CleanUp();
 private:
