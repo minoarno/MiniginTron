@@ -72,6 +72,9 @@ namespace dae
 
 		void Collision(b2Fixture* pThisFixture, b2Fixture* pOtherFixture, b2Contact* pContact, CollisionType contactType);
 		void AddCollisionCallback(const CollisionCallback& callback);
+
+
+		float GetRotation()const;
 	private:
 		dae::Scene* m_pScene;
 		std::string m_Tag;
@@ -95,6 +98,7 @@ namespace dae
 		void BaseRender()const;
 
 		std::vector<CollisionCallback> m_CollisionCallbacks;
+
 	};
 
 	template<typename T>

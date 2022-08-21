@@ -5,6 +5,7 @@
 dae::Transform::Transform(const glm::vec3& pos)
 	: BaseComponent{}
 	, m_LocalPosition{pos}
+	, m_Angle{0}
 {
 }
 
@@ -25,6 +26,11 @@ void dae::Transform::SetLocalPosition(const float x, const float y, const float 
 	m_LocalPosition.x = x;
 	m_LocalPosition.y = y;
 	m_LocalPosition.z = z;
+}
+
+void dae::Transform::SetRotation(float angle)
+{
+	m_Angle = angle;
 }
 
 void dae::Transform::Move(float x, float y, float z)

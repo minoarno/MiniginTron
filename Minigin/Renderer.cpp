@@ -4,6 +4,9 @@
 #include "SceneManager.h"
 #include "Texture2D.h"
 #include "TextureComponent.h"
+#include "BaseComponent.h"
+#include "GameObject.h"
+#include "Transform.h"
 
 int GetOpenGLDriverIndex()
 {
@@ -67,47 +70,48 @@ void dae::Renderer::Destroy()
 	}
 }
 
-void dae::Renderer::RenderTexture(const TextureComponent* pTexture, const int x, const int y) const
+void dae::Renderer::RenderTexture(const TextureComponent* pTexture, const int x, const int y, float angle) const
 {
-	RenderTexture(pTexture, x, y, pTexture->GetTextureWidth(), pTexture->GetTextureHeight());
+	RenderTexture(pTexture, x, y, pTexture->GetTextureWidth(), pTexture->GetTextureHeight(), angle);
 }
 
-void dae::Renderer::RenderTexture(const TextureComponent* pTexture, const int x, const int y, const int width, const int height) const
+void dae::Renderer::RenderTexture(const TextureComponent* pTexture, const int x, const int y, const int width, const int height, float angle) const
 {
 	SDL_Rect dst{x,y,width,height};
-	if (pTexture->GetIsFlipped())
-	{
-		SDL_Point center{ int(x + width * .5f), int(y + height * .5f) };
-		SDL_RenderCopyEx(GetSDLRenderer(), pTexture->GetTexture()->GetSDLTexture(), nullptr, &dst, 0, &center, SDL_FLIP_HORIZONTAL);
-	}
-	else
-	{
-		SDL_RenderCopy(GetSDLRenderer(), pTexture->GetTexture()->GetSDLTexture(), nullptr, &dst);
-	}
-}
-
-void dae::Renderer::RenderTexture(const TextureComponent* pTexture, const SDL_Rect& srcRect, const int x, const int y) const
-{
-	RenderTexture(pTexture, srcRect,x, y, pTexture->GetTextureWidth(), pTexture->GetTextureHeight());
-}
-
-void dae::Renderer::RenderTexture(const TextureComponent* pTexture, const SDL_Rect& srcRect, const int x, const int y, const int width, const int height) const
-{
-	SDL_Rect dst{x,y,width,height};
+	SDL_Point center{ int(x + width * .5f), int(y + height * .5f) };
 
 	if (pTexture->GetIsFlipped())
 	{
-		SDL_Point center{ int(x + width * .5f), int(y + height * .5f) };
-		SDL_RenderCopyEx(GetSDLRenderer(), pTexture->GetTexture()->GetSDLTexture(), &srcRect, &dst, 0, &center, SDL_FLIP_HORIZONTAL);
+		SDL_RenderCopyEx(GetSDLRenderer(), pTexture->GetTexture()->GetSDLTexture(), nullptr, &dst, double(angle), &center, SDL_FLIP_HORIZONTAL);
 	}
 	else
 	{
-		SDL_RenderCopy(GetSDLRenderer(), pTexture->GetTexture()->GetSDLTexture(), &srcRect, &dst);
+		SDL_RenderCopyEx(GetSDLRenderer(), pTexture->GetTexture()->GetSDLTexture(), nullptr, &dst, double(angle), &center, SDL_FLIP_NONE);
+	}
+}
+
+void dae::Renderer::RenderTexture(const TextureComponent* pTexture, const SDL_Rect& srcRect, const int x, const int y, float angle) const
+{
+	RenderTexture(pTexture, srcRect,x, y, pTexture->GetTextureWidth(), pTexture->GetTextureHeight(), angle);
+}
+
+void dae::Renderer::RenderTexture(const TextureComponent* pTexture, const SDL_Rect& srcRect, const int x, const int y, const int width, const int height, float angle) const
+{
+	SDL_Rect dst{x,y,width,height};
+
+	SDL_Point center{ int(x + width * .5f), int(y + height * .5f) };
+	if (pTexture->GetIsFlipped())
+	{
+		SDL_RenderCopyEx(GetSDLRenderer(), pTexture->GetTexture()->GetSDLTexture(), &srcRect, &dst, angle, &center, SDL_FLIP_HORIZONTAL);
+	}
+	else
+	{
+		SDL_RenderCopyEx(GetSDLRenderer(), pTexture->GetTexture()->GetSDLTexture(), &srcRect, &dst, angle, &center, SDL_FLIP_NONE);
 	}
 
 }
 
-void dae::Renderer::RenderTexture(const TextureComponent* pTexture, const SDL_Rect& srcRect, const SDL_Rect& dstRect) const
+void dae::Renderer::RenderTexture(const TextureComponent* pTexture, const SDL_Rect& srcRect, const SDL_Rect& dstRect, float angle) const
 {
-	RenderTexture(pTexture, srcRect, dstRect.x, dstRect.y, dstRect.w, dstRect.h);
+	RenderTexture(pTexture, srcRect, dstRect.x, dstRect.y, dstRect.w, dstRect.h,angle);
 }

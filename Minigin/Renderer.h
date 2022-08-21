@@ -17,11 +17,11 @@ namespace dae
 		void Render() const;
 		void Destroy();
 
-		void RenderTexture(const TextureComponent* pTexture, const int x, const int y) const;
-		void RenderTexture(const TextureComponent* pTexture, const int x, const int y, const int width, const int height) const;
-		void RenderTexture(const TextureComponent* pTexture, const SDL_Rect& srcRect, const int x, const int y) const;
-		void RenderTexture(const TextureComponent* pTexture, const SDL_Rect& srcRect, const int x, const int y, const int width, const int height) const;
-		void RenderTexture(const TextureComponent* pTexture, const SDL_Rect& srcRect, const SDL_Rect& dstRect) const;
+		void RenderTexture(const TextureComponent* pTexture, const int x, const int y, float angle) const;
+		void RenderTexture(const TextureComponent* pTexture, const int x, const int y, const int width, const int height, float angle) const;
+		void RenderTexture(const TextureComponent* pTexture, const SDL_Rect& srcRect, const int x, const int y, float angle) const;
+		void RenderTexture(const TextureComponent* pTexture, const SDL_Rect& srcRect, const int x, const int y, const int width, const int height, float angle) const;
+		void RenderTexture(const TextureComponent* pTexture, const SDL_Rect& srcRect, const SDL_Rect& dstRect, float angle) const;
 
 		SDL_Renderer* GetSDLRenderer() const { return m_Renderer; }
 

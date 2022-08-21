@@ -18,8 +18,11 @@ namespace dae
 		glm::vec3 GetWorldPosition() const;
 		
 		void SetLocalPosition(float x, float y, float z);
+		void SetRotation(float angle);
 		void Move(float x, float y, float z);
+		float GetRotation()const { return m_Angle; };
 	private:
 		glm::vec3 m_LocalPosition;
+		float m_Angle{0};
 	};
 }

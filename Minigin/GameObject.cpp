@@ -210,16 +210,16 @@ void dae::GameObject::BaseRender() const
 		{
 			if (dst.w != 0 && dst.h != 0)
 			{
-				Renderer::GetInstance().RenderTexture(m_pTextureComponent, src, dst);
+				Renderer::GetInstance().RenderTexture(m_pTextureComponent, src, dst, GetRotation());
 			}
 			else
 			{
-				Renderer::GetInstance().RenderTexture(m_pTextureComponent, src, dst.x, dst.y);
+				Renderer::GetInstance().RenderTexture(m_pTextureComponent, src, dst.x, dst.y, GetRotation());
 			}
 		}
 		else
 		{
-			Renderer::GetInstance().RenderTexture(m_pTextureComponent, dst.x, dst.y);
+			Renderer::GetInstance().RenderTexture(m_pTextureComponent, dst.x, dst.y, GetRotation());
 		}
 	}
 
@@ -232,6 +232,11 @@ void dae::GameObject::BaseRender() const
 	{
 		m_pChildren[i]->BaseRender();
 	}
+}
+
+float dae::GameObject::GetRotation() const
+{
+	return GetComponent<dae::Transform>()->GetRotation();
 }
 
 void dae::GameObject::SetTexture(const std::string& filename, int amountOfCols, int amountOfRows)
