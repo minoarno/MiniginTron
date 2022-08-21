@@ -5,6 +5,7 @@
 
 class ContactListener;
 class b2World;
+class b2DebugDraw;
 namespace dae
 {
 	class Scene
@@ -44,6 +45,7 @@ namespace dae
 
 		b2World* m_pWorld{ nullptr };
 		ContactListener* m_pContactListener{ nullptr };
+		b2DebugDraw* m_pB2DebugDraw{ nullptr };
 
 		bool m_IsInitialized{ false };
 

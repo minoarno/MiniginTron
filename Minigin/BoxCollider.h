@@ -5,7 +5,7 @@
 class BoxCollider final :  public ColliderComponent
 {
 public:
-	BoxCollider(const Vector2& dim, const Vector2& center);
+	BoxCollider(const Vector2& dim, const Vector2& center = {0,0});
 	BoxCollider(const BoxCollider&) = delete;
 	BoxCollider& operator=(const BoxCollider&) = delete;
 	BoxCollider(BoxCollider&&) = delete;

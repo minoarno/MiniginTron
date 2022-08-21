@@ -34,15 +34,24 @@
     <ClCompile Include="TimerCallback.cpp">
       <Filter>Patterns</Filter>
     </ClCompile>
-    <ClCompile Include="JsonLevelLoader.cpp" />
     <ClCompile Include="SingleplayerLevel.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="PrefabBuilder.cpp" />
     <ClCompile Include="BulletComponent.cpp">
       <Filter>Prefabs</Filter>
     </ClCompile>
-    <ClCompile Include="EnemyLogic.cpp" />
+    <ClCompile Include="PrefabBuilder.cpp">
+      <Filter>Helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="JsonLevelLoader.cpp">
+      <Filter>Helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="HighScore.cpp">
+      <Filter>Helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyLogic.cpp">
+      <Filter>Helpers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ScoreObserver.h">
@@ -60,7 +69,6 @@
     <ClInclude Include="MainMenu.h">
       <Filter>Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="TronPCH.h" />
     <ClInclude Include="LivesDisplay.h">
       <Filter>Prefabs\UI</Filter>
     </ClInclude>
@@ -76,16 +84,30 @@
     <ClInclude Include="TimerCallback.h">
       <Filter>Patterns</Filter>
     </ClInclude>
-    <ClInclude Include="JsonLevelLoader.h" />
     <ClInclude Include="SingleplayerLevel.h">
       <Filter>Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="PrefabBuilder.h" />
-    <ClInclude Include="TronCommands.h" />
     <ClInclude Include="BulletComponent.h">
       <Filter>Prefabs</Filter>
     </ClInclude>
-    <ClInclude Include="EnemyLogic.h" />
+    <ClInclude Include="TronCommands.h">
+      <Filter>Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="PrefabBuilder.h">
+      <Filter>Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="JsonLevelLoader.h">
+      <Filter>Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="HighScore.h">
+      <Filter>Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyLogic.h">
+      <Filter>Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="TronPCH.h">
+      <Filter>Helpers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="imgui.ini" />
@@ -102,6 +124,9 @@
     </Filter>
     <Filter Include="Prefabs\UI">
       <UniqueIdentifier>{cc3a873e-6e45-43ae-b244-d58af5bbd4b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Helpers">
+      <UniqueIdentifier>{9aed1d4a-d0a6-4e74-b35a-5102a8e510e0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

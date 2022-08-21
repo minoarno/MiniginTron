@@ -81,7 +81,6 @@ bool InputManager::XInputManager::ProcessInput()
 					if (c.second->pOnRelease != nullptr)
 					{
 						c.second->pOnRelease->Execute();
-						
 					}
 				}
 			}

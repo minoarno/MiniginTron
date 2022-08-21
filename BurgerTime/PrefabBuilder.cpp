@@ -7,22 +7,22 @@
 #include "BoxCollider.h"
 
 #include "InputManager.h"
-
 #include "TronCommands.h"
-
 #include "JsonLevelLoader.h"
+#include "EnemyLogic.h"
 
 dae::GameObject* Prefab::CreatePlayer(const Vector2& pos, DWORD playerIndex, dae::Scene* pScene)
 {
+    Vector2 dims{ 24,24 };
     dae::GameObject* pPlayer = new dae::GameObject{};
     pPlayer->SetPosition(pos);
     pPlayer->SetScene(pScene);
 
     pPlayer->SetTexture("RedTank.png");
-    pPlayer->GetComponent<TextureComponent>()->SetDestinationRectDimensions({ 40,40 });
+    pPlayer->GetComponent<TextureComponent>()->SetDestinationRectDimensions(dims);
 
     pPlayer->AddComponent(new RigidBody(false));
-    pPlayer->AddComponent(new BoxCollider({ 40,40 }, { 20, 20 }));
+    pPlayer->AddComponent(new BoxCollider(dims, {dims.x /2, dims.y / 2 }));
 
     InputManager::GetInstance().AddOnRelease(ControllerButton::DPadUp,      new MoveCommand(pPlayer, 500, { 0,-1 }), playerIndex);
     InputManager::GetInstance().AddOnRelease(ControllerButton::DPadDown,    new MoveCommand(pPlayer, 500, { 0, 1 }), playerIndex);
@@ -52,7 +52,7 @@ dae::GameObject* Prefab::CreateBlock(const Vector2& pos, const Vector2& dims, da
     pBlock->GetComponent<TextureComponent>()->SetDestinationRectDimensions({ dims.x, dims.y });
 
     pBlock->AddComponent(new RigidBody(true));
-    pBlock->AddComponent(new BoxCollider({ dims.x, dims.y }, {pos.x + dims.x / 2, pos.y + dims.y / 2 }));
+    pBlock->AddComponent(new BoxCollider({ dims.x, dims.y }, {dims.x / 2, dims.y / 2}));
 
     return pBlock;
 }
@@ -60,7 +60,7 @@ dae::GameObject* Prefab::CreateBlock(const Vector2& pos, const Vector2& dims, da
 dae::GameObject* Prefab::CreateLevel(const std::string& filepath, dae::Scene* pScene)
 {
     dae::GameObject* pLevel = new dae::GameObject{};
-    pLevel->SetPosition({0,200});
+    pLevel->SetPosition({0,0});
     pLevel->SetScene(pScene);
 
     JsonLevelLoader::LoadSceneUsingJson(pLevel, filepath, nullptr);
@@ -68,17 +68,45 @@ dae::GameObject* Prefab::CreateLevel(const std::string& filepath, dae::Scene* pS
     return pLevel;
 }
 
-dae::GameObject* Prefab::CreateTank(const Vector2& pos, dae::Scene* pScene)
+dae::GameObject* Prefab::CreateBlueTank(const Vector2& pos, dae::Scene* pScene)
 {
+    Vector2 dims{ 22,22 };
+
     dae::GameObject* pTank = new dae::GameObject{};
     pTank->SetScene(pScene);
     pTank->SetPosition(pos);
 
     pTank->SetTexture("BlueTank.png");
-    pTank->GetComponent<TextureComponent>()->SetDestinationRectDimensions({ 32 , 32 });
+    pTank->GetComponent<TextureComponent>()->SetDestinationRectDimensions(dims);
 
     pTank->AddComponent(new RigidBody(false));
-    pTank->AddComponent(new BoxCollider({ 32,32 }, { 16, 16 }));
+    pTank->AddComponent(new BoxCollider(dims, { dims.x / 2, dims.y / 2 }));
+
+    pTank->AddComponent(new EnemyLogic{ 100,100,3 });
 
     return pTank;
+}
+
+dae::GameObject* Prefab::CreateRecognizer(const Vector2& pos, dae::Scene* pScene)
+{
+    Vector2 dims{ 22,22 };
+
+    dae::GameObject* pRecognizer = new dae::GameObject{};
+    pRecognizer->SetScene(pScene);
+    pRecognizer->SetPosition(pos);
+
+    pRecognizer->SetTexture("Recognizer.png");
+    pRecognizer->GetComponent<TextureComponent>()->SetDestinationRectDimensions(dims);
+
+    pRecognizer->AddComponent(new RigidBody(false));
+    pRecognizer->AddComponent(new BoxCollider(dims, { dims.x / 2, dims.y / 2 }));
+
+    pRecognizer->AddComponent(new EnemyLogic{ 200,250,3 });
+
+    return pRecognizer;
+}
+
+dae::GameObject* Prefab::CreateBullet(const Vector2& pos, const Vector2& direction, dae::Scene* pScene)
+{
+    return nullptr;
 }

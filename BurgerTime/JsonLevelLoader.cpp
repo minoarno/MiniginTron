@@ -10,11 +10,15 @@
 #include "Pathfinding.h"
 #include "PrefabBuilder.h"
 
+#include "HighScore.h"
+
 void JsonLevelLoader::LoadSceneUsingJson(dae::GameObject* pLevelObject, const std::string& jsonFile, Pathfinding* pPathfinding)
 {
-	nlohmann::json j = LoadJsonFile(jsonFile);
-
 	pPathfinding = nullptr;
+
+	auto posLevel = pLevelObject->GetComponent<dae::Transform>()->GetLocalPosition();
+
+	nlohmann::json j = LoadJsonFile(jsonFile);
 	
 	dae::Scene* pScene = pLevelObject->GetScene();
 
@@ -29,9 +33,8 @@ void JsonLevelLoader::LoadSceneUsingJson(dae::GameObject* pLevelObject, const st
 			LevelBlockID id = LevelBlockID(level[r][c]);
 			if (id != LevelBlockID::empty)
 			{
-				/*dae::GameObject* pLevelBlock =*/ pLevelObject->AddChild(Prefab::CreateBlock(Vector2{c * blockWidth, r * blockHeight}, Vector2{blockWidth,blockHeight}, pScene));
-				//pLevelBlock->SetTag("Level");
-	
+				dae::GameObject* pLevelBlock = pLevelObject->AddChild(Prefab::CreateBlock(Vector2{ c * blockWidth, r * blockHeight}, Vector2{blockWidth,blockHeight}, pScene));
+				pLevelBlock->SetTag("Level");
 				//pPathfinding->AddNode({ c * blockWidth, y * blockHeight });
 			}
 		}
@@ -74,4 +77,15 @@ nlohmann::json JsonLevelLoader::LoadJsonFile(const std::string& jsonFile)
 	nlohmann::json j;
 	inputFile >> j;
 	return j;
+}
+
+void JsonLevelLoader::LoadHighScore(const std::string& jsonFile, HighScore* pHighScoreList)
+{
+	nlohmann::json j = LoadJsonFile(jsonFile);
+
+	auto highscoreList = j.at("HighScore").get<std::vector<int>>();
+	for (size_t i = 0; i < highscoreList.size(); i++)
+	{
+		pHighScoreList->AddScore(highscoreList[i]);
+	}
 }

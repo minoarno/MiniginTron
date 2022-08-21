@@ -11,11 +11,14 @@ MainMenu::MainMenu()
 
 void MainMenu::Initialize()
 {
+	AddObject(Prefab::CreatePlayer({20,50}, 0, this));
+
+	AddObject(Prefab::CreateLevel("Level1.json", this));
+
+	AddObject(Prefab::CreateBlueTank({ 20,360 }, this));
+
+	//HUD
 	dae::GameObject* pFPSObject = AddObject(new dae::GameObject{});
 	pFPSObject->AddComponent(new FPSObject{});
 	pFPSObject->SetPosition(50, 50);
-
-	AddObject(Prefab::CreatePlayer({100,50}, 0, this));
-
-	AddObject(Prefab::CreateLevel("Level1.json", this));
 }

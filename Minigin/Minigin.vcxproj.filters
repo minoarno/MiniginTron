@@ -115,6 +115,7 @@
       <Filter>Box2D</Filter>
     </ClInclude>
     <ClInclude Include="ContactListener.h" />
+    <ClInclude Include="b2DebugDraw.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="imgui\imgui.cpp">
@@ -222,6 +223,7 @@
       <Filter>Box2D</Filter>
     </ClCompile>
     <ClCompile Include="ContactListener.cpp" />
+    <ClCompile Include="b2DebugDraw.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="imgui">

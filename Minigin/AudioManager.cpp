@@ -86,8 +86,11 @@ void Audio::MixerAudio::PlaySound(int soundID)
 		std::cout << "Sound out of range.\n";
 		return;
 	}
-
-	Mix_PlayChannel(-1, m_pSoundEffects[soundID],0);
+	std::thread tempThread{ [=]()
+	{
+		Mix_PlayChannel(-1, m_pSoundEffects[soundID], 0);
+	} };
+	tempThread.join();
 }
 
 void Audio::MixerAudio::StopSound(int soundID)

@@ -230,6 +230,7 @@ xcopy $(SolutionDir)3rdParty\Box2D\lib\$(PlatformTarget)\$(Configuration)\*.pdb 
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="AudioManager.h" />
+    <ClInclude Include="b2DebugDraw.h" />
     <ClInclude Include="BaseComponent.h" />
     <ClInclude Include="Box2D.h" />
     <ClInclude Include="BoxCollider.h" />
@@ -272,6 +273,7 @@ xcopy $(SolutionDir)3rdParty\Box2D\lib\$(PlatformTarget)\$(Configuration)\*.pdb 
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AudioManager.cpp" />
+    <ClCompile Include="b2DebugDraw.cpp" />
     <ClCompile Include="BaseComponent.cpp" />
     <ClCompile Include="BoxCollider.cpp" />
     <ClCompile Include="Button.cpp" />

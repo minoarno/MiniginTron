@@ -5,7 +5,7 @@
 #include "HelperFunctions.h"
 #include "Box2D/Dynamics/b2World.h"
 #include "ContactListener.h"
-
+#include "b2DebugDraw.h"
 #include "EngineTime.h"
 
 using namespace dae;
@@ -20,6 +20,21 @@ Scene::Scene(const std::string& name)
 	m_pWorld->SetAllowSleeping(false);
 	m_pContactListener = new ContactListener{};
 	m_pWorld->SetContactListener(m_pContactListener);
+
+#if _DEBUG
+	m_pB2DebugDraw = new b2DebugDraw();
+
+	//enable all of the bitflags
+	uint32 bitflags = 0;
+	bitflags += b2Draw::e_shapeBit;
+	bitflags += b2Draw::e_jointBit;
+	bitflags += b2Draw::e_aabbBit;
+	bitflags += b2Draw::e_pairBit;
+	bitflags += b2Draw::e_centerOfMassBit;
+
+	m_pB2DebugDraw->SetFlags(bitflags);
+	m_pWorld->SetDebugDraw(m_pB2DebugDraw);
+#endif
 }
 
 Scene::~Scene()
@@ -43,6 +58,9 @@ Scene::~Scene()
 
 	delete m_pWorld;
 	m_pWorld = nullptr;
+
+	delete m_pB2DebugDraw;
+	m_pB2DebugDraw = nullptr;
 }
 
 void dae::Scene::RemoveObject(GameObject* pObject)

@@ -15,9 +15,11 @@ enum class LevelBlockID
 	block = 1
 };
 class Level;
+class HighScore;
 class Pathfinding;
 namespace JsonLevelLoader
 {
 	void LoadSceneUsingJson(dae::GameObject* pLevelObject, const std::string& jsonFile, Pathfinding* pPathfinding);
 	nlohmann::json LoadJsonFile(const std::string& jsonFile);
+	void LoadHighScore(const std::string& jsonFile, HighScore* pHighScoreList);
 };
