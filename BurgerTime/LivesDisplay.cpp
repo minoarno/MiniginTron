@@ -8,12 +8,8 @@
 #include "Lives.h"
 
 LivesDisplay::LivesDisplay(Lives* pLives)
+	:m_pLives{pLives}
 {
-	TextComponent* pText = new TextComponent{ dae::ResourceManager::GetInstance().LoadFont("Lingua.otf", 36) };
-	m_pLivesObserver = new LiveObserver(pText);
-	m_pGameObject->AddComponent(pText);
-	pLives->AddObserver(m_pLivesObserver);
-	pText->SetText("Lives: 5");
 }
 
 LivesDisplay::~LivesDisplay()
@@ -24,4 +20,8 @@ LivesDisplay::~LivesDisplay()
 
 void LivesDisplay::Initialize()
 {
+	TextComponent* pText = m_pGameObject->GetComponent<TextComponent>();
+	m_pLivesObserver = new LiveObserver(pText);
+	m_pLives->AddObserver(m_pLivesObserver);
+	pText->SetText("Lives: 5");
 }

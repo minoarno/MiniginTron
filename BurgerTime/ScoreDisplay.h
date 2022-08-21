@@ -17,6 +17,7 @@ public:
 protected:
 	void Initialize()override;
 private:
-	ScoreObserver* m_pScoreObserver = nullptr;
+	ScoreObserver* m_pScoreObserver{ nullptr };
+	Score* m_pScore{ nullptr };
 };
 

@@ -7,15 +7,12 @@
 #include "ResourceManager.h"
 #include <fstream>
 
-#include "Pathfinding.h"
 #include "PrefabBuilder.h"
 
 #include "HighScore.h"
 
-void JsonLevelLoader::LoadSceneUsingJson(dae::GameObject* pLevelObject, const std::string& jsonFile, Pathfinding* pPathfinding)
+void JsonLevelLoader::LoadSceneUsingJson(dae::GameObject* pLevelObject, const std::string& jsonFile)
 {
-	pPathfinding = nullptr;
-
 	auto posLevel = pLevelObject->GetComponent<dae::Transform>()->GetLocalPosition();
 
 	nlohmann::json j = LoadJsonFile(jsonFile);
@@ -35,39 +32,9 @@ void JsonLevelLoader::LoadSceneUsingJson(dae::GameObject* pLevelObject, const st
 			{
 				dae::GameObject* pLevelBlock = pLevelObject->AddChild(Prefab::CreateBlock(Vector2{ c * blockWidth, r * blockHeight}, Vector2{blockWidth,blockHeight}, pScene));
 				pLevelBlock->SetTag("Level");
-				//pPathfinding->AddNode({ c * blockWidth, y * blockHeight });
 			}
 		}
 	}
-	
-	//Loading in the pathfinding
-	//for (int r = 0; r < int(level.size()); r++)
-	//{
-	//	for (int c = 0; c < int(level[r].size()); c++)
-	//	{
-	//		int height = (r / 2) * 2 * (pLevel->GetSlabBlockHeight() + pLevel->GetLadderBlockHeight()) + (r % 2 == 1) * pLevel->GetLadderBlockHeight();
-	//		int width{ c * pLevel->GetBlockWidth() };
-	//		int index = pPathfinding->GetNodeID({ c * pLevel->GetBlockWidth(), y });
-	//		
-	//		int weight{ 1 };
-	//		if (c - 1 >= 0 && LevelBlock::LevelBlockID(level[r][c - 1]) != LevelBlock::LevelBlockID::empty)
-	//		{
-	//			pPathfinding->AddEdge(index, pPathfinding->GetNodeID(Vector2{ width - pLevel->GetBlockWidth(),height }), weight);
-	//		}
-	//		if (r - 1 >= 0 && LevelBlock::LevelBlockID(level[r - 1][c]) != LevelBlock::LevelBlockID::empty)
-	//		{
-	//			pPathfinding->AddEdge(index, pPathfinding->GetNodeID(Vector2{ width,((r - 1) / 2) * 2 * (pLevel->GetSlabBlockHeight() + pLevel->GetLadderBlockHeight()) + ((r - 1) % 2 == 1) * pLevel->GetLadderBlockHeight() }), weight);
-	//		}
-	//		if (c + 1 < int(level[r].size()) && LevelBlock::LevelBlockID(level[r][c + 1]) != LevelBlock::LevelBlockID::empty)
-	//		{
-	//			pPathfinding->AddEdge(index, pPathfinding->GetNodeID(Vector2{ width + pLevel->GetBlockWidth(),height }), weight);
-	//		}
-	//		if (r + 1 < int(level.size()) && LevelBlock::LevelBlockID(level[r + 1][c]) != LevelBlock::LevelBlockID::empty)
-	//		{
-	//			pPathfinding->AddEdge(index, pPathfinding->GetNodeID(Vector2{ width,((r + 1) / 2) * 2 * (pLevel->GetSlabBlockHeight() + pLevel->GetLadderBlockHeight()) + ((r + 1) % 2 == 1) * pLevel->GetLadderBlockHeight() }), weight);
-	//		}
-	//	}
-	//}
 }
 
 nlohmann::json JsonLevelLoader::LoadJsonFile(const std::string& jsonFile)

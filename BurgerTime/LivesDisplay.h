@@ -16,6 +16,7 @@ public:
 protected:
 	void Initialize()override;
 private:
-	LiveObserver* m_pLivesObserver = nullptr;
+	LiveObserver* m_pLivesObserver{ nullptr };
+	Lives* m_pLives{ nullptr };
 };
 

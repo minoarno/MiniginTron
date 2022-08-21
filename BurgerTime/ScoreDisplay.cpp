@@ -6,12 +6,8 @@
 #include "ScoreObserver.h"
 #include "Score.h"
 ScoreDisplay::ScoreDisplay(Score* pScore)
+	: m_pScore{pScore}
 {
-	TextComponent* pText = new TextComponent{ dae::ResourceManager::GetInstance().LoadFont("Lingua.otf", 36) };
-	m_pGameObject->AddComponent(pText);
-	m_pScoreObserver = new ScoreObserver{pText};
-	pScore->AddObserver(m_pScoreObserver);
-	pText->SetText("Score: 0");
 }
 
 ScoreDisplay::~ScoreDisplay()
@@ -22,5 +18,8 @@ ScoreDisplay::~ScoreDisplay()
 
 void ScoreDisplay::Initialize()
 {
-	
+	TextComponent* pText = m_pGameObject->GetComponent<TextComponent>();
+	m_pScoreObserver = new ScoreObserver{ pText };
+	m_pScore->AddObserver(m_pScoreObserver);
+	pText->SetText("Score: 0");
 }

@@ -19,7 +19,7 @@ class HighScore;
 class Pathfinding;
 namespace JsonLevelLoader
 {
-	void LoadSceneUsingJson(dae::GameObject* pLevelObject, const std::string& jsonFile, Pathfinding* pPathfinding);
+	void LoadSceneUsingJson(dae::GameObject* pLevelObject, const std::string& jsonFile);
 	nlohmann::json LoadJsonFile(const std::string& jsonFile);
 	void LoadHighScore(const std::string& jsonFile, HighScore* pHighScoreList);
 };

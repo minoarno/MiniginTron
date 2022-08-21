@@ -13,6 +13,12 @@
 #include "BulletComponent.h"
 
 #include "Player.h"
+#include "Lives.h"
+#include "LivesDisplay.h"
+#include "Score.h"
+#include "ScoreDisplay.h"
+#include "TextComponent.h"
+#include "ResourceManager.h"
 
 dae::GameObject* Prefab::CreatePlayer(const Vector2& pos, InputDesc inputDesc, dae::Scene* pScene)
 {
@@ -74,7 +80,7 @@ dae::GameObject* Prefab::CreateLevel(const std::string& filepath, dae::Scene* pS
     pLevel->SetPosition({0,0});
     pLevel->SetScene(pScene);
 
-    JsonLevelLoader::LoadSceneUsingJson(pLevel, filepath, nullptr);
+    JsonLevelLoader::LoadSceneUsingJson(pLevel, filepath);
 
     return pLevel;
 }
@@ -135,4 +141,22 @@ dae::GameObject* Prefab::CreateBullet(const Vector2& pos, const Vector2& directi
     pBullet->AddComponent(new BulletComponent{});
     pBullet->SetTag(tagBullet);
     return pBullet;
+}
+
+dae::GameObject* Prefab::CreateLiveText(const Vector2& pos, Lives* pLives)
+{
+    dae::GameObject* pObject = new dae::GameObject{};
+    pObject->AddComponent(new TextComponent{ dae::ResourceManager::GetInstance().LoadFont("Lingua.otf", 36) });
+    pObject->AddComponent(new LivesDisplay{ pLives });
+    pObject->SetPosition(pos);
+    return pObject;
+}
+
+dae::GameObject* Prefab::CreateScoreText(const Vector2& pos, Score* pScore)
+{
+    dae::GameObject* pObject = new dae::GameObject{};
+    pObject->AddComponent(new TextComponent{ dae::ResourceManager::GetInstance().LoadFont("Lingua.otf", 36) });
+    pObject->AddComponent(new ScoreDisplay{ pScore });
+    pObject->SetPosition(pos);
+    return pObject;
 }
