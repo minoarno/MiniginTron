@@ -167,6 +167,8 @@
     <ClCompile Include="BulletComponent.cpp" />
     <ClCompile Include="EnemyLogic.cpp" />
     <ClCompile Include="HighScore.cpp" />
+    <ClCompile Include="MultiplayerLevel.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="PrefabBuilder.cpp">
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">TronPCH.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">TronPCH.h</PrecompiledHeaderFile>
@@ -256,6 +258,8 @@
     <ClInclude Include="BulletComponent.h" />
     <ClInclude Include="EnemyLogic.h" />
     <ClInclude Include="HighScore.h" />
+    <ClInclude Include="MultiplayerLevel.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="TronCommands.h" />
     <ClInclude Include="TronPCH.h" />
     <ClInclude Include="FPSObject.h" />

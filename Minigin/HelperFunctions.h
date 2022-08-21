@@ -6,3 +6,5 @@ bool IsOverlapping(const Rect& rect, const Vector2& p);
 
 void SetColor(const Color& color);
 void DrawRect(const Rect& rect);
+
+Vector2 RotateVector(const Vector2& vector, float angleInRadians);

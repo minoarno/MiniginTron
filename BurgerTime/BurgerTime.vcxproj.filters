@@ -52,6 +52,12 @@
     <ClCompile Include="EnemyLogic.cpp">
       <Filter>Helpers</Filter>
     </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Prefabs</Filter>
+    </ClCompile>
+    <ClCompile Include="MultiplayerLevel.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ScoreObserver.h">
@@ -107,6 +113,12 @@
     </ClInclude>
     <ClInclude Include="TronPCH.h">
       <Filter>Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Prefabs</Filter>
+    </ClInclude>
+    <ClInclude Include="MultiplayerLevel.h">
+      <Filter>Scenes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

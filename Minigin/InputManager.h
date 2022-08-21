@@ -20,6 +20,19 @@ enum class ControllerButton
     ButtonY = 0x8000
 };
 
+struct InputDesc
+{
+    DWORD playerIndex{};
+    ControllerButton moveUp{ ControllerButton::DPadUp };
+    ControllerButton moveDown{ ControllerButton::DPadDown };
+    ControllerButton moveLeft{ ControllerButton::DPadLeft };
+    ControllerButton moveRight{ ControllerButton::DPadLeft };
+    ControllerButton shoot{ ControllerButton::ButtonA };
+    ControllerButton rotateLeft{ ControllerButton::ButtonX };
+    ControllerButton rotateRight{ ControllerButton::ButtonB };
+};
+
+
 class Command;
 class XInputManager;
 class InputManager final : public dae::Singleton<InputManager>

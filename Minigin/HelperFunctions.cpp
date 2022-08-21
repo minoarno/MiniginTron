@@ -38,3 +38,12 @@ void DrawRect(const Rect& rect)
 	}
 	glEnd();
 }
+
+Vector2 RotateVector(const Vector2& vector, float angleInRadians)
+{
+	Vector2 result{};
+	result.x = vector.x * cos(angleInRadians) - vector.y * sin(angleInRadians);
+	result.y = vector.x * sin(angleInRadians) + vector.y * cos(angleInRadians);
+
+	return result;
+}

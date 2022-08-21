@@ -3,6 +3,7 @@
 
 #include "FPSObject.h"
 #include "PrefabBuilder.h"
+#include "InputManager.h"
 
 MainMenu::MainMenu()
 	:dae::Scene{ "MainMenu" }
@@ -11,7 +12,9 @@ MainMenu::MainMenu()
 
 void MainMenu::Initialize()
 {
-	AddObject(Prefab::CreatePlayer({20,50}, 0, this));
+
+	InputDesc inputDescPlayer1{};
+	AddObject(Prefab::CreatePlayer({20,50}, inputDescPlayer1, this));
 
 	AddObject(Prefab::CreateLevel("Level1.json", this));
 
