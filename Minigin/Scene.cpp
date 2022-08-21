@@ -8,6 +8,8 @@
 #include "b2DebugDraw.h"
 #include "EngineTime.h"
 
+#include "Log.h"
+
 using namespace dae;
 
 unsigned int Scene::m_IdCounter = 0;
@@ -65,7 +67,14 @@ Scene::~Scene()
 
 void dae::Scene::RemoveObject(GameObject* pObject)
 {
-	m_pToBeDeletedObjects.emplace_back(pObject);
+	if (std::find(m_pToBeDeletedObjects.begin(), m_pToBeDeletedObjects.end(),pObject) == m_pToBeDeletedObjects.end())
+	{
+		m_pToBeDeletedObjects.emplace_back(pObject);
+	}
+	else
+	{
+		ME_CORE_WARN("The item has already been added to the list");
+	}
 }
 
 b2World* dae::Scene::GetWorld()
@@ -126,7 +135,7 @@ void dae::Scene::BaseLateUpdate()
 
 	LateUpdate();
 
-	for (int i = 0; i < int(m_pToBeDeletedObjects.size()); i++)
+	for (int i = int(m_pToBeDeletedObjects.size() - 1); i > 0; i--)
 	{
 		auto it = std::remove_if(m_pObjects.begin(), m_pObjects.end(), [=](dae::GameObject* pObject)
 			{

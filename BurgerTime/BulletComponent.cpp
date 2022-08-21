@@ -1,7 +1,47 @@
 #include "TronPCH.h"
 #include "BulletComponent.h"
+#include "GameObject.h"
+#include "Player.h"
+#include "Lives.h"
+#include "Scene.h"
 
 void BulletComponent::Initialize()
 {
-	
+	m_pGameObject->AddCollisionCallback([=](b2Fixture*, b2Fixture* pOtherFixture, b2Contact*, CollisionType contactType)
+		{
+			if (!m_pGameObject->GetActive())return;
+
+			if (contactType == CollisionType::BeginContact)
+			{
+
+				dae::GameObject* other = static_cast<dae::GameObject*>(pOtherFixture->GetUserData());
+				if (contactType != CollisionType::BeginContact) return;
+
+				if (other->GetTag() == "Enemy" && m_pGameObject->GetTag() == "PlayerBullet")
+				{
+					m_pGameObject->SetActive(false);
+					m_pGameObject->GetScene()->RemoveObject(m_pGameObject);
+					return;
+				}
+
+				if (other->GetTag() == "Player" && m_pGameObject->GetTag() == "EnemyBullet")
+				{
+					other->GetComponent<Player>()->GetLives()->LoseLife();
+					m_pGameObject->SetActive(false);
+					m_pGameObject->GetScene()->RemoveObject(m_pGameObject);
+					return;
+				}
+
+				//if (other->GetTag() == "Level")
+				{
+					m_CurrentAmountOfBounces++;
+					if (m_CurrentAmountOfBounces >= m_MaxAmountOfBounces)
+					{
+						m_pGameObject->SetActive(false);
+						m_pGameObject->GetScene()->RemoveObject(m_pGameObject);
+					}
+				}
+			}
+		}
+	);
 }

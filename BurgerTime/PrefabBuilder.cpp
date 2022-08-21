@@ -12,6 +12,8 @@
 #include "EnemyLogic.h"
 #include "BulletComponent.h"
 
+#include "Player.h"
+
 dae::GameObject* Prefab::CreatePlayer(const Vector2& pos, InputDesc inputDesc, dae::Scene* pScene)
 {
     Vector2 dims{ 24,24 };
@@ -24,6 +26,7 @@ dae::GameObject* Prefab::CreatePlayer(const Vector2& pos, InputDesc inputDesc, d
 
     pPlayer->AddComponent(new RigidBody(false));
     pPlayer->AddComponent(new BoxCollider(dims, {dims.x /2, dims.y / 2 }));
+    pPlayer->AddComponent(new Player{ 3 });
 
     InputManager::GetInstance().AddOnRelease(inputDesc.moveUp,      new MoveCommand(pPlayer, 500, { 0,-1 }), inputDesc.playerIndex);
     InputManager::GetInstance().AddOnRelease(inputDesc.moveDown,    new MoveCommand(pPlayer, 500, { 0, 1 }), inputDesc.playerIndex);
@@ -123,7 +126,7 @@ dae::GameObject* Prefab::CreateBullet(const Vector2& pos, const Vector2& directi
     pBullet->GetComponent<TextureComponent>()->SetDestinationRectDimensions(dims);
 
     RigidBody* pRigid = pBullet->AddComponent(new RigidBody(false));
-    pRigid->Move(direction.x, direction.y);
+    pRigid->Move(direction.x * 20, direction.y * 20);
     pBullet->AddComponent(new BoxCollider(dims, { dims.x / 2, dims.y / 2 }));
 
     pBullet->AddComponent(new BulletComponent{});

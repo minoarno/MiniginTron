@@ -1,6 +1,6 @@
 #pragma once
 #include "Scene.h"
-class SingleplayerLevel : public dae::Scene
+class SingleplayerLevel final: public dae::Scene
 {
 public:
 	SingleplayerLevel();
@@ -11,5 +11,5 @@ public:
 	~SingleplayerLevel() = default;
 
 
-	virtual void Initialize();
+	void Initialize() override;
 };

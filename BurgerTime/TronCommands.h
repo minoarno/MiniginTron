@@ -61,7 +61,7 @@ public:
 		auto pos = m_pGameObject->GetComponent<dae::Transform>()->GetWorldPosition();
 		Vector2 position{ pos.x + direction.x * m_Speed, pos.y + direction.y * m_Speed };
 		
-		Prefab::CreateBullet(position, direction, m_pGameObject->GetScene(), m_TagBullet);
+		m_pGameObject->GetScene()->AddObject(Prefab::CreateBullet(position, direction, m_pGameObject->GetScene(), m_TagBullet));
 	}
 
 	void SetDirection(const Vector2& dir) { m_Direction = dir; };
@@ -69,7 +69,7 @@ protected:
 	Vector2 m_Direction{};
 	dae::GameObject* m_pGameObject{};
 	std::string m_TagBullet{};
-	float m_Speed{ 20.f };
+	float m_Speed{ 24.f };
 };
 
 class RotateCommand : public Command
