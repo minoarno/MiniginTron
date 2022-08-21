@@ -26,7 +26,7 @@ struct InputDesc
     ControllerButton moveUp{ ControllerButton::DPadUp };
     ControllerButton moveDown{ ControllerButton::DPadDown };
     ControllerButton moveLeft{ ControllerButton::DPadLeft };
-    ControllerButton moveRight{ ControllerButton::DPadLeft };
+    ControllerButton moveRight{ ControllerButton::DPadRight };
     ControllerButton shoot{ ControllerButton::ButtonA };
     ControllerButton rotateLeft{ ControllerButton::ButtonX };
     ControllerButton rotateRight{ ControllerButton::ButtonB };
