@@ -40,7 +40,7 @@ dae::GameObject* Prefab::CreatePlayer(const Vector2& pos, InputDesc inputDesc, d
     InputManager::GetInstance().AddOnRelease(inputDesc.moveRight,   new MoveCommand(pPlayer, 500, { 1, 0 }), inputDesc.playerIndex);
     InputManager::GetInstance().AddOnRelease(inputDesc.rotateLeft,  new RotateCommand(pPlayer, true), inputDesc.playerIndex);
     InputManager::GetInstance().AddOnRelease(inputDesc.rotateRight, new RotateCommand(pPlayer, false), inputDesc.playerIndex);
-    InputManager::GetInstance().AddOnRelease(inputDesc.shoot,       new ShootCommand(pPlayer, 20, "PlayerBullet"), inputDesc.playerIndex);
+    InputManager::GetInstance().AddOnRelease(inputDesc.shoot,       new ShootCommand(pPlayer, 100, "PlayerBullet"), inputDesc.playerIndex);
 
     pPlayer->SetTag("Player");
     return pPlayer;
@@ -123,7 +123,7 @@ dae::GameObject* Prefab::CreateRecognizer(const Vector2& pos, dae::Scene* pScene
     return pRecognizer;
 }
 
-dae::GameObject* Prefab::CreateBullet(const Vector2& pos, const Vector2& direction, dae::Scene* pScene, const std::string& tagBullet)
+dae::GameObject* Prefab::CreateBullet(const Vector2& pos, const Vector2& direction, dae::Scene* pScene, const std::string& tagBullet, Player* pPlayer)
 {
     Vector2 dims{ 4,4 };
 
@@ -135,10 +135,10 @@ dae::GameObject* Prefab::CreateBullet(const Vector2& pos, const Vector2& directi
     pBullet->GetComponent<TextureComponent>()->SetDestinationRectDimensions(dims);
 
     RigidBody* pRigid = pBullet->AddComponent(new RigidBody(false));
-    pRigid->Move(direction.x * 20, direction.y * 20);
+    pRigid->Move(direction.x * 200, direction.y * 200);
     pBullet->AddComponent(new BoxCollider(dims, { dims.x / 2, dims.y / 2 }));
 
-    pBullet->AddComponent(new BulletComponent{});
+    pBullet->AddComponent(new BulletComponent{ pPlayer });
     pBullet->SetTag(tagBullet);
     return pBullet;
 }

@@ -7,7 +7,7 @@
 #include "EngineTime.h"
 #include "HelperFunctions.h"
 #include "GameObject.h"
-
+#include "TextureComponent.h"
 Player::Player(int lives)
     : m_AmountOfLives{ lives }
     , m_pLives{ nullptr }
@@ -31,6 +31,7 @@ void Player::TurnLeft()
 
     m_AngleInRadians += elapsedSec * m_RotationSpeed;
     m_DirectionBarrel = RotateVector(m_DirectionBarrel, m_AngleInRadians);
+    m_pBarrel->GetComponent<dae::Transform>()->SetRotation(m_AngleInRadians);
 }
 
 void Player::TurnRight()
@@ -39,7 +40,7 @@ void Player::TurnRight()
 
     m_AngleInRadians -= elapsedSec * m_RotationSpeed;
     m_DirectionBarrel = RotateVector(m_DirectionBarrel, m_AngleInRadians);
-    //m_pBarrel->GetComponent<dae::Transform>().
+    m_pBarrel->GetComponent<dae::Transform>()->SetRotation(m_AngleInRadians);
 }
 
 void Player::Initialize()
@@ -47,6 +48,7 @@ void Player::Initialize()
     m_pLives = m_pGameObject->AddComponent(new Lives{ m_AmountOfLives });
     m_pScore = m_pGameObject->AddComponent(new Score{ });
 
-    //m_pBarrel = m_pGameObject->AddChild(new dae::GameObject{});
-
+    m_pBarrel = m_pGameObject->AddChild(new dae::GameObject{});
+    m_pBarrel->SetTexture("Barrel.png");
+    m_pBarrel->GetComponent<TextureComponent>()->SetDestinationRectDimensions({20,8});
 }

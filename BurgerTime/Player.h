@@ -2,6 +2,11 @@
 #include "HelperStructs.h"
 #include "BaseComponent.h"
 
+namespace dae
+{
+	class GameObject;
+}
+
 class Score;
 class Lives;
 class Player : public BaseComponent
@@ -30,4 +35,6 @@ private:
 	Vector2 m_DirectionBarrel{0,1};
 	float m_AngleInRadians{ 0.f };
 	float m_RotationSpeed{ 20 };
+
+	dae::GameObject* m_pBarrel;
 };

@@ -78,7 +78,7 @@ void dae::Renderer::RenderTexture(const TextureComponent* pTexture, const int x,
 void dae::Renderer::RenderTexture(const TextureComponent* pTexture, const int x, const int y, const int width, const int height, float angle) const
 {
 	SDL_Rect dst{x,y,width,height};
-	SDL_Point center{ int(x + width * .5f), int(y + height * .5f) };
+	SDL_Point center{ int(width * .5f), int(height * .5f) };
 
 	if (pTexture->GetIsFlipped())
 	{
@@ -99,7 +99,7 @@ void dae::Renderer::RenderTexture(const TextureComponent* pTexture, const SDL_Re
 {
 	SDL_Rect dst{x,y,width,height};
 
-	SDL_Point center{ int(x + width * .5f), int(y + height * .5f) };
+	SDL_Point center{ int(width * .5f), int(height * .5f) };
 	if (pTexture->GetIsFlipped())
 	{
 		SDL_RenderCopyEx(GetSDLRenderer(), pTexture->GetTexture()->GetSDLTexture(), &srcRect, &dst, angle, &center, SDL_FLIP_HORIZONTAL);

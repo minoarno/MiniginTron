@@ -39,4 +39,15 @@ void EnemyLogic::Update()
 {
 
 	m_pGameObject->GetComponent<RigidBody>()->Move(0,0);
+	auto pWorld = m_pGameObject->GetScene()->GetWorld();
+
+	if (pWorld->RayCast(, {}, {}))
+	{
+
+	}
+
+	if (m_EnemyState == EnemyState::wander)
+	{
+
+	}
 }

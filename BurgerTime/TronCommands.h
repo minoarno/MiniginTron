@@ -57,12 +57,13 @@ public:
 
 	virtual void Execute() const
 	{
-		auto direction = m_pGameObject->GetComponent<Player>()->GetDirection();
+		auto pPlayer = m_pGameObject->GetComponent<Player>();
+		auto direction = pPlayer->GetDirection();
 
 		auto pos = m_pGameObject->GetComponent<dae::Transform>()->GetWorldPosition();
-		Vector2 position{ pos.x + direction.x * m_Speed, pos.y + direction.y * m_Speed };
+		Vector2 position{ pos.x + direction.x * 20, pos.y + direction.y * 20 };
 		
-		m_pGameObject->GetScene()->AddObject(Prefab::CreateBullet(position, direction, m_pGameObject->GetScene(), m_TagBullet));
+		m_pGameObject->GetScene()->AddObject(Prefab::CreateBullet(position, direction, m_pGameObject->GetScene(), m_TagBullet, pPlayer));
 	}
 
 	void SetDirection(const Vector2& dir) { m_Direction = dir; };

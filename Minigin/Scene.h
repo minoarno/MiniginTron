@@ -37,6 +37,7 @@ namespace dae
 		virtual void Unload() {};
 
 		b2World* GetWorld();
+
 	private: 
 		friend class SceneManager;
 

@@ -1,10 +1,12 @@
 #pragma once
 #include "BaseComponent.h"
 
+class Player;
 class BulletComponent final: public BaseComponent
 {
 public:
 	BulletComponent() = default;
+	BulletComponent(Player* pPlayer);
 	BulletComponent(const BulletComponent&) = delete;
 	BulletComponent& operator=(const BulletComponent&) = delete;
 	BulletComponent(BulletComponent&&) = delete;
@@ -17,5 +19,7 @@ protected:
 
 private:
 	int m_MaxAmountOfBounces{ 5 };
-	int m_CurrentAmountOfBounces{};
+	int m_CurrentAmountOfBounces{ 0 };
+
+	Player* m_pPlayer{ nullptr };
 };

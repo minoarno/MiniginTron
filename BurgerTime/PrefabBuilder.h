@@ -10,6 +10,7 @@ class Command;
 struct InputDesc;
 class Lives;
 class Score;
+class Player;
 namespace Prefab
 {
 	dae::GameObject* CreatePlayer(const Vector2& pos, InputDesc inputDesc, dae::Scene* pScene);
@@ -18,7 +19,7 @@ namespace Prefab
 	dae::GameObject* CreateLevel(const std::string& filepath, dae::Scene* pScene);
 	dae::GameObject* CreateBlueTank(const Vector2& pos, dae::Scene* pScene);
 	dae::GameObject* CreateRecognizer(const Vector2& pos, dae::Scene* pScene);
-	dae::GameObject* CreateBullet(const Vector2& pos, const Vector2& direction , dae::Scene* pScene, const std::string& tagBullet);
+	dae::GameObject* CreateBullet(const Vector2& pos, const Vector2& direction , dae::Scene* pScene, const std::string& tagBullet, Player* pPlayer = nullptr);
 	dae::GameObject* CreateLiveText(const Vector2& pos, Lives* pLives);
 	dae::GameObject* CreateScoreText(const Vector2& pos, Score* pScore);
 }
