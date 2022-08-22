@@ -1,4 +1,5 @@
 #pragma once
+#include "Box2D.h"
 
 struct Rect
 {
@@ -36,4 +37,24 @@ struct Vector2
 		, y{ float(y) }
 	{
 	}
+};
+
+class RaycastCallback :public b2RayCastCallback
+{
+public:
+	RaycastCallback(uint16 category) :m_Category(category) {}
+	float32 ReportFixture(b2Fixture* fixture, const b2Vec2& point, const b2Vec2& normal, float32 fraction) override;
+	bool hasHit() { return hit; }
+	b2Fixture* GetFixHit() { return fixHit; }
+	Vector2 GetHitNormal() { return hitnormal; }
+	Vector2 GetHitPoint() { return hitpoint; }
+	uint16 m_CategoryHit = 0;
+private:
+	uint16 m_Category;
+
+	Vector2 hitnormal;
+	Vector2 hitpoint;
+
+	bool hit = false;
+	b2Fixture* fixHit = nullptr;
 };

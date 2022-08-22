@@ -165,6 +165,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BulletComponent.cpp" />
+    <ClCompile Include="Diamond.cpp" />
     <ClCompile Include="EnemyLogic.cpp" />
     <ClCompile Include="HighScore.cpp" />
     <ClCompile Include="MultiplayerLevel.cpp" />
@@ -256,6 +257,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BulletComponent.h" />
+    <ClInclude Include="Diamond.h" />
     <ClInclude Include="EnemyLogic.h" />
     <ClInclude Include="HighScore.h" />
     <ClInclude Include="MultiplayerLevel.h" />

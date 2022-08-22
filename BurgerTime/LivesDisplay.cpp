@@ -23,5 +23,5 @@ void LivesDisplay::Initialize()
 	TextComponent* pText = m_pGameObject->GetComponent<TextComponent>();
 	m_pLivesObserver = new LiveObserver(pText);
 	m_pLives->AddObserver(m_pLivesObserver);
-	pText->SetText("Lives: 5");
+	pText->SetText("Lives: 3");
 }

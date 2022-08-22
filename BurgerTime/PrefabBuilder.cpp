@@ -19,6 +19,8 @@
 #include "ScoreDisplay.h"
 #include "TextComponent.h"
 #include "ResourceManager.h"
+#include "Diamond.h"
+#include "HighScore.h"
 
 dae::GameObject* Prefab::CreatePlayer(const Vector2& pos, InputDesc inputDesc, dae::Scene* pScene)
 {
@@ -159,4 +161,34 @@ dae::GameObject* Prefab::CreateScoreText(const Vector2& pos, Score* pScore)
     pObject->AddComponent(new ScoreDisplay{ pScore });
     pObject->SetPosition(pos);
     return pObject;
+}
+
+dae::GameObject* Prefab::CreateDiamond(const Vector2& pos, const std::function<void()>& func, dae::Scene* pScene)
+{
+    Vector2 dims{ 48,48 };
+
+    dae::GameObject* pDiamond = new dae::GameObject{};
+    pDiamond->SetScene(pScene);
+    pDiamond->SetPosition(pos);
+
+    pDiamond->SetTexture("Diamond.png");
+    pDiamond->GetComponent<TextureComponent>()->SetDestinationRectDimensions(dims);
+
+    pDiamond->AddComponent(new RigidBody(true));
+    pDiamond->AddComponent(new BoxCollider(dims, { dims.x / 2, dims.y / 2 }));
+
+    pDiamond->AddComponent(new Diamond{ func });
+    pDiamond->SetTag("Level");
+    return pDiamond;
+}
+
+dae::GameObject* Prefab::CreateHighScoreList(const Vector2& pos, const std::string& filepath, HighScore* pHighScore)
+{
+    dae::GameObject* pHighScores = new dae::GameObject{};
+    pHighScores->SetPosition(pos);
+
+    JsonLevelLoader::LoadHighScore(filepath, pHighScore);
+    //pHighScore->
+
+    return pHighScores;
 }

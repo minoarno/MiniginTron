@@ -58,6 +58,7 @@
     <ClCompile Include="MultiplayerLevel.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
+    <ClCompile Include="Diamond.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ScoreObserver.h">
@@ -120,6 +121,7 @@
     <ClInclude Include="MultiplayerLevel.h">
       <Filter>Scenes</Filter>
     </ClInclude>
+    <ClInclude Include="Diamond.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="imgui.ini" />
