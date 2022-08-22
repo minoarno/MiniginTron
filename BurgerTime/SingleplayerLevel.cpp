@@ -27,6 +27,7 @@ SingleplayerLevel::~SingleplayerLevel()
 void SingleplayerLevel::Initialize()
 {
 	InputDesc inputDescPlayer1{};
+	inputDescPlayer1.playerIndex = 0;
 	dae::GameObject* pPlayerObject = AddObject(Prefab::CreatePlayer({ 20,50 }, inputDescPlayer1, this));
 	std::vector<Player*> pPlayers{};
 	pPlayers.emplace_back(pPlayerObject->GetComponent<Player>());

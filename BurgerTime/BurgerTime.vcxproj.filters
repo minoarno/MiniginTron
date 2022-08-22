@@ -58,7 +58,9 @@
     <ClCompile Include="MultiplayerLevel.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="Diamond.cpp" />
+    <ClCompile Include="Diamond.cpp">
+      <Filter>Prefabs</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ScoreObserver.h">
@@ -121,7 +123,9 @@
     <ClInclude Include="MultiplayerLevel.h">
       <Filter>Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="Diamond.h" />
+    <ClInclude Include="Diamond.h">
+      <Filter>Prefabs</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="imgui.ini" />

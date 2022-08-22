@@ -16,18 +16,24 @@ MultiplayerLevel::MultiplayerLevel()
 {
 }
 
+MultiplayerLevel::~MultiplayerLevel()
+{
+	delete m_pHighScore;
+	m_pHighScore = nullptr;
+}
+
 void MultiplayerLevel::Initialize()
 {
 	InputDesc inputDescPlayer1{};
+	inputDescPlayer1.playerIndex = 0;
 	dae::GameObject* pPlayerObject = AddObject(Prefab::CreatePlayer({ 20,50 }, inputDescPlayer1, this));
 	std::vector<Player*> pPlayers{};
 	pPlayers.emplace_back(pPlayerObject->GetComponent<Player>());
-	m_pPlayer1 = pPlayerObject->GetComponent<Player>();
 
 	InputDesc inputDescPlayer2{};
-	dae::GameObject* pPlayerObject2 = AddObject(Prefab::CreatePlayer({ 240,50 }, inputDescPlayer1, this));
+	inputDescPlayer2.playerIndex = 1;
+	dae::GameObject* pPlayerObject2 = AddObject(Prefab::CreatePlayer({ 240,50 }, inputDescPlayer2, this));
 	pPlayers.emplace_back(pPlayerObject2->GetComponent<Player>());
-	m_pPlayer2 = pPlayerObject2->GetComponent<Player>();
 
 	AddObject(Prefab::CreateLevel("Level1.json", this));
 	m_Respawns.emplace_back(Vector2{ 20,50 });
