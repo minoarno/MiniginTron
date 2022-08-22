@@ -260,8 +260,8 @@ void dae::GameObject::SetPosition(float x, float y, float z)
 void dae::GameObject::SetPosition(const Vector2& pos)
 {
 	GetComponent<Transform>()->SetLocalPosition(float(pos.x), float(pos.y), 0.f);
-	if (GetComponent<RigidBody>() != nullptr)
-	{
-		GetComponent<RigidBody>()->GetBody()->SetTransform(b2Vec2{ pos.x, pos.y }, GetRotation());
-	}
+	//if (GetComponent<RigidBody>() != nullptr)
+	//{
+	//	GetComponent<RigidBody>()->GetBody()->SetTransform(b2Vec2{ pos.x, pos.y }, GetRotation());
+	//}
 }
