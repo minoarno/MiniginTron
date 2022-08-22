@@ -87,7 +87,7 @@ dae::GameObject* Prefab::CreateLevel(const std::string& filepath, dae::Scene* pS
     return pLevel;
 }
 
-dae::GameObject* Prefab::CreateBlueTank(const Vector2& pos, dae::Scene* pScene)
+dae::GameObject* Prefab::CreateBlueTank(const Vector2& pos, dae::Scene* pScene, const std::vector<Player*>& pPlayers)
 {
     Vector2 dims{ 22,22 };
 
@@ -101,12 +101,12 @@ dae::GameObject* Prefab::CreateBlueTank(const Vector2& pos, dae::Scene* pScene)
     pTank->AddComponent(new RigidBody(false));
     pTank->AddComponent(new BoxCollider(dims, { dims.x / 2, dims.y / 2 }));
 
-    pTank->AddComponent(new EnemyLogic{ 100,100,3 });
+    pTank->AddComponent(new EnemyLogic{ 100,100,3,pPlayers });
     pTank->SetTag("Enemy");
     return pTank;
 }
 
-dae::GameObject* Prefab::CreateRecognizer(const Vector2& pos, dae::Scene* pScene)
+dae::GameObject* Prefab::CreateRecognizer(const Vector2& pos, dae::Scene* pScene, const std::vector<Player*>& pPlayers)
 {
     Vector2 dims{ 22,22 };
 
@@ -120,7 +120,7 @@ dae::GameObject* Prefab::CreateRecognizer(const Vector2& pos, dae::Scene* pScene
     pRecognizer->AddComponent(new RigidBody(false));
     pRecognizer->AddComponent(new BoxCollider(dims, { dims.x / 2, dims.y / 2 }));
 
-    pRecognizer->AddComponent(new EnemyLogic{ 200,250,3 });
+    pRecognizer->AddComponent(new EnemyLogic{ 200,250,3, pPlayers});
     pRecognizer->SetTag("Enemy");
     return pRecognizer;
 }

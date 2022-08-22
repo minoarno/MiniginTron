@@ -11,12 +11,15 @@
 #include "EngineTime.h"
 #include "Timer.h"
 #include "TimerCallback.h"
+#include "Player.h"
+#include "TronCommands.h"
 
-EnemyLogic::EnemyLogic(float speed, int score, int hp)
+EnemyLogic::EnemyLogic(float speed, int score, int hp, const std::vector<Player*>& players)
 	: m_Speed{ speed }
 	, m_Score{ score }
 	, m_Hitpoints{ hp }
 {
+	m_pPlayers = players;
 }
 
 EnemyLogic::~EnemyLogic()
@@ -52,8 +55,22 @@ void EnemyLogic::Initialize()
 				auto pWorld = m_pGameObject->GetScene()->GetWorld();
 				auto pos = m_pGameObject->GetComponent<dae::Transform>()->GetWorldPosition();
 
-
 				RaycastCallback hitInfo{ 0 };
+				for (size_t i = 0; i < m_pPlayers.size(); i++)
+				{
+					auto posPlayer = m_pPlayers[i]->GetGameObject()->GetComponent<dae::Transform>()->GetWorldPosition();
+					Vector2 direction = { posPlayer.x - pos.x, posPlayer.y - pos.y };
+					pWorld->RayCast(&hitInfo, { pos.x,pos.y }, { pos.x + direction.x * 60,pos.y + direction.y * 60 });
+				
+					if (!hitInfo.hasHit())
+					{
+						Vector2 position{ pos.x + direction.x * m_Speed, pos.y + direction.y * m_Speed };
+
+						//m_pGameObject->GetScene()->AddObject(Prefab::CreateBullet(position, direction, m_pGameObject->GetScene(), "EnemyBullet"));
+					}
+				}
+
+
 				std::vector<Vector2> directions{};
 
 				const float lengthRay{ 20.f };

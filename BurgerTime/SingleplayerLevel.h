@@ -17,6 +17,7 @@ protected:
 	void Initialize() override;
 	void Update()override;
 
+	std::vector<Vector2> m_Respawns{};
 	std::vector<dae::GameObject*> m_pEnemies{};
 	dae::GameObject* m_pLevel{nullptr};
 	Player* m_pPlayer{ nullptr };

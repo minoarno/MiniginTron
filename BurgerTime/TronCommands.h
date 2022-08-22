@@ -9,6 +9,7 @@
 #include "RigidBody.h"
 #include "PrefabBuilder.h"
 #include "Player.h"
+#include "EnemyLogic.h"
 
 class MoveCommand : public Command
 {
@@ -61,7 +62,7 @@ public:
 		auto direction = pPlayer->GetDirection();
 
 		auto pos = m_pGameObject->GetComponent<dae::Transform>()->GetWorldPosition();
-		Vector2 position{ pos.x + direction.x * 20, pos.y + direction.y * 20 };
+		Vector2 position{ pos.x + direction.x * m_Speed, pos.y + direction.y * m_Speed };
 		
 		m_pGameObject->GetScene()->AddObject(Prefab::CreateBullet(position, direction, m_pGameObject->GetScene(), m_TagBullet, pPlayer));
 	}

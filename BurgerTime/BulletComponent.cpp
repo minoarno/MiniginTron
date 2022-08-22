@@ -29,8 +29,10 @@ void BulletComponent::Initialize()
 				m_pGameObject->SetActive(false);
 				m_pGameObject->GetScene()->RemoveObject(m_pGameObject);
 
-				m_pPlayer->GetScore()->IncreaseScore(other->GetComponent<EnemyLogic>()->GetScore());
-
+				if (m_pPlayer != nullptr)
+				{
+					m_pPlayer->GetScore()->IncreaseScore(other->GetComponent<EnemyLogic>()->GetScore());
+				}
 				return;
 			}
 

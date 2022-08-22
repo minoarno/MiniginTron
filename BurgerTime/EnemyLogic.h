@@ -12,10 +12,11 @@ enum class EnemyState
 
 class Timer;
 class TimerCallBack;
+class Player;
 class EnemyLogic final : public BaseComponent
 {
 public:
-	EnemyLogic(float speed, int score, int hp);
+	EnemyLogic(float speed, int score, int hp, const std::vector<Player*>& players);
 	EnemyLogic(const EnemyLogic&) = delete;
 	EnemyLogic& operator=(const EnemyLogic&) = delete;
 	EnemyLogic(EnemyLogic&&) = delete;
@@ -23,6 +24,7 @@ public:
 	~EnemyLogic();
 
 	int GetScore()const { return m_Score; };
+	Vector2 GetDirection()const { return m_Direction; };
 protected:
 	void Initialize() override;
 	void Update()override;
@@ -36,4 +38,6 @@ private:
 
 	TimerCallback* m_pTimerCallBack{ nullptr };
 	Timer* m_pTimer{ nullptr };
+
+	std::vector<Player*> m_pPlayers{};
 };
