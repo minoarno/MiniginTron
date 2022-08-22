@@ -61,15 +61,14 @@ void EnemyLogic::Initialize()
 					auto posPlayer = m_pPlayers[i]->GetGameObject()->GetComponent<dae::Transform>()->GetWorldPosition();
 					Vector2 direction = { posPlayer.x - pos.x, posPlayer.y - pos.y };
 					pWorld->RayCast(&hitInfo, { pos.x,pos.y }, { pos.x + direction.x * 60,pos.y + direction.y * 60 });
-				
+
 					if (!hitInfo.hasHit())
 					{
 						Vector2 position{ pos.x + direction.x * m_Speed, pos.y + direction.y * m_Speed };
-
-						//m_pGameObject->GetScene()->AddObject(Prefab::CreateBullet(position, direction, m_pGameObject->GetScene(), "EnemyBullet"));
+						m_Direction = direction;
+						m_EnemyState = EnemyState::shooting;
 					}
 				}
-
 
 				std::vector<Vector2> directions{};
 
@@ -123,6 +122,9 @@ void EnemyLogic::Update()
 		}
 		break;
 	case EnemyState::shooting:
+
+		m_pGameObject->GetScene()->AddObject(Prefab::CreateEnemyBullet({ pos.x,pos.y }, m_Direction, m_pGameObject->GetScene()));
+
 
 		break;
 	}

@@ -21,6 +21,7 @@ namespace Prefab
 	dae::GameObject* CreateBlueTank(const Vector2& pos, dae::Scene* pScene, const std::vector<Player*>& pPlayers);
 	dae::GameObject* CreateRecognizer(const Vector2& pos, dae::Scene* pScene, const std::vector<Player*>& pPlayers);
 	dae::GameObject* CreateBullet(const Vector2& pos, const Vector2& direction , dae::Scene* pScene, const std::string& tagBullet, Player* pPlayer = nullptr);
+	dae::GameObject* CreateEnemyBullet(const Vector2& pos, const Vector2& direction , dae::Scene* pScene);
 	dae::GameObject* CreateLiveText(const Vector2& pos, Lives* pLives);
 	dae::GameObject* CreateScoreText(const Vector2& pos, Score* pScore);
 	dae::GameObject* CreateDiamond(const Vector2& pos, const std::function<void()>& func, dae::Scene* pScene);

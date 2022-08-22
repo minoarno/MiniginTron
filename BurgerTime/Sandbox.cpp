@@ -17,6 +17,8 @@
 
 #include "MainMenu.h"
 #include "SingleplayerLevel.h"
+#include "MultiplayerLevel.h"
+//#include "MultiplayerLevel.h"
 
 int main(int, char* []) 
 {
@@ -30,6 +32,7 @@ int main(int, char* [])
 		//Please add your scenes here
 		dae::SceneManager::GetInstance().AddScene(new MainMenu());
 		dae::SceneManager::GetInstance().AddScene(new SingleplayerLevel());
+		dae::SceneManager::GetInstance().AddScene(new MultiplayerLevel());
 	}
 	engine.Run();
 	return 0;

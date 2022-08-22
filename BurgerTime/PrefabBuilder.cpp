@@ -145,6 +145,26 @@ dae::GameObject* Prefab::CreateBullet(const Vector2& pos, const Vector2& directi
     return pBullet;
 }
 
+dae::GameObject* Prefab::CreateEnemyBullet(const Vector2& pos, const Vector2& direction, dae::Scene* pScene)
+{
+    Vector2 dims{ 4,4 };
+
+    dae::GameObject* pBullet = new dae::GameObject{};
+    pBullet->SetScene(pScene);
+    pBullet->SetPosition(pos);
+
+    pBullet->SetTexture("Bullet.png");
+    pBullet->GetComponent<TextureComponent>()->SetDestinationRectDimensions(dims);
+
+    RigidBody* pRigid = pBullet->AddComponent(new RigidBody(false));
+    pRigid->Move(direction.x * 200, direction.y * 200);
+    pBullet->AddComponent(new BoxCollider(dims, { dims.x / 2, dims.y / 2 }));
+
+    pBullet->AddComponent(new BulletComponent{ });
+    pBullet->SetTag("BulletEnemy");
+    return pBullet;
+}
+
 dae::GameObject* Prefab::CreateLiveText(const Vector2& pos, Lives* pLives)
 {
     dae::GameObject* pObject = new dae::GameObject{};
@@ -188,7 +208,6 @@ dae::GameObject* Prefab::CreateHighScoreList(const Vector2& pos, const std::stri
     pHighScores->SetPosition(pos);
 
     JsonLevelLoader::LoadHighScore(filepath, pHighScore);
-    //pHighScore->
 
     return pHighScores;
 }

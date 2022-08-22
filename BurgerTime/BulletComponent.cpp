@@ -8,6 +8,7 @@
 #include "EnemyLogic.h"
 #include "Timer.h"
 #include "TimerCallback.h"
+#include "RigidBody.h"
 
 BulletComponent::BulletComponent(Player* pPlayer)
 	: m_pPlayer{ pPlayer }
@@ -47,6 +48,8 @@ void BulletComponent::Initialize()
 			if (other->GetTag() == "Level")
 			{
 				m_CurrentAmountOfBounces++;
+				auto vel = m_pGameObject->GetComponent<RigidBody>()->GetBody()->GetLinearVelocity();
+				m_pGameObject->GetComponent<RigidBody>()->Move(vel.x * -1, vel.y * -1);
 				if (m_CurrentAmountOfBounces >= m_MaxAmountOfBounces)
 				{
 					m_pGameObject->SetActive(false);
